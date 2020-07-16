@@ -1,0 +1,12 @@
+{
+  "name": "LFBus",
+  "version": "1.0.0",
+  "description": "WEZONCOOP LOW-FLOOR-BUS SYSTEM",
+  "main": "index.js",
+  "repository": "https://github.com/wjd7440/LFBus",
+  "author": "WEZONCOOP_JungJungHoon",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "^1.18.3"
+  }
+}
