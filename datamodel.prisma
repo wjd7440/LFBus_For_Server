@@ -2,3 +2,9 @@ type User {
   id: ID! @id
   name: String!
 }
+
+type BusStation {
+    id: ID! @id
+    name: String!
+    busStationNo: Int!
+}
