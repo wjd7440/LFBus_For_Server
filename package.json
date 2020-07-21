@@ -2,7 +2,7 @@
   "name": "LFBus",
   "version": "1.0.0",
   "description": "WEZONCOOP LOW-FLOOR-BUS SYSTEM",
-  "repository": "https://github.com/wjd7440/LFBus",
+  "repository": "https://github.com/wjd7440/LFBus_For_Server",
   "author": "WEZONCOOP_JungJungHoon",
   "license": "MIT",
   "dependencies": {
@@ -24,6 +24,9 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
+    "deploy": "prisma deploy",
+    "generate": "prisma generate",
+    "prisma": "yarn run deploy && yarn run generate",
     "dev": "nodemon --exec babel-node src/server.js"
   }
 }
