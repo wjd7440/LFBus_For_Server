@@ -33,6 +33,7 @@ server.express.use(
     ].join(" ");
   })
 );
+server.express.use(authenticateJwt);
 
 server.start({ port: PORT }, () =>
   console.log(`✅ Server running on http://localhost:${PORT}`)
