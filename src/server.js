@@ -4,7 +4,9 @@ import { GraphQLServer } from "graphql-yoga";
 import logger from "morgan";
 import schema from "./schema";
 import "./passport";
+import { authenticateJwt } from "./passport";
 import { isUserAuthenticated, isAdminAuthenticated } from "./middlewares";
+import express from "express";
 
 const PORT = process.env.PORT || 4000;
 

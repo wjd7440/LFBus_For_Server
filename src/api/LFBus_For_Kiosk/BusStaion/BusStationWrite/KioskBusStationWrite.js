@@ -2,12 +2,7 @@ import { prisma } from "../../../../../generated/prisma-client";
 
 export default {
   Mutation: {
-    KioskBusStationWrite: async (
-      _,
-      args,
-      { request, isKioskAuthenticated }
-    ) => {
-      isKioskAuthenticated(request);
+    KioskBusStationWrite: async (_, args) => {
       const { name, busStationNo } = args;
       try {
         await prisma.createBusStation({
