@@ -8,3 +8,9 @@ type BusStation {
     name: String!
     busStationNo: Int!
 }
+
+type BusInfo{
+  id: ID! @id
+  carRegNo: String!
+  busType: String!
+}
