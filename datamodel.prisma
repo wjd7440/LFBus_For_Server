@@ -4,9 +4,9 @@ type User {
 }
 
 type BusStation {
-    id: ID! @id
-    name: String!
-    busStationNo: Int!
+  id: ID! @id
+  name: String!
+  busStationNo: Int!
 }
 
 type BusInfo{
