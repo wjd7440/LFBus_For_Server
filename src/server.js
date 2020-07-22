@@ -11,6 +11,10 @@ import express from "express";
 const PORT = process.env.PORT || 4000;
 
 const server = new GraphQLServer({
+  name: "Query",
+  fields: {
+    _dummy: { type: graphql.GraphQLString },
+  },
   schema,
   context: ({ request }) => ({
     request,
