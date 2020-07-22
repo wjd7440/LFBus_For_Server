@@ -11,7 +11,6 @@ import express from "express";
 const PORT = process.env.PORT || 4000;
 
 const server = new GraphQLServer({
-  schema,
   context: ({ request }) => ({
     request,
     isUserAuthenticated,
@@ -35,6 +34,6 @@ server.express.use(
 );
 server.express.use(authenticateJwt);
 
-server.start({ port: 4000 }, () =>
-  console.log(`✅ Server running on http://localhost:4000`)
+server.start({ port: PORT }, () =>
+  console.log(`✅ Server running on http://localhost:${PORT}`)
 );
