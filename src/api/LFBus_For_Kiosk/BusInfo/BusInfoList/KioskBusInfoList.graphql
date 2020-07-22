@@ -1,0 +1,16 @@
+type BusInfos {
+  busInfos: [BusInfos!]!
+  count: Int
+}
+
+type Query {
+  KioskBusInfoList(
+    keyword: String
+    orderBy: String
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): BusInfos!
+}
