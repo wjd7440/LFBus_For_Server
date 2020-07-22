@@ -11,6 +11,7 @@ import express from "express";
 const PORT = process.env.PORT || 4000;
 
 const server = new GraphQLServer({
+  schema,
   context: ({ request }) => ({
     request,
     isUserAuthenticated,
