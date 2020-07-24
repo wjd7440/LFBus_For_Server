@@ -20,9 +20,7 @@ export default {
       });
 
       const count = await prisma
-        .busStationsConnection({
-          where,
-        })
+        .busStationsConnection()
         .aggregate()
         .count();
 
