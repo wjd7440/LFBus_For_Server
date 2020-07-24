@@ -5,6 +5,8 @@ export default {
     KioskBusStationList: async (_, args) => {
       const { keyword, orderBy, skip, after, before, first, last } = args;
 
+      let where = null;
+
       //   if (keyword) {
       //     where = { ...where, question_contains: keyword };
       //   }
