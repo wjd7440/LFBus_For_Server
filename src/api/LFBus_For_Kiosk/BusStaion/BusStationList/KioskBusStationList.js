@@ -11,20 +11,10 @@ export default {
       //     where = { ...where, question_contains: keyword };
       //   }
 
-      const busStations = await prisma.busStations({
-        where,
-        orderBy,
-        skip, //offset
-        after,
-        before,
-        first, //limit
-        last,
-      });
+      const busStations = await prisma.busStations();
 
       const count = await prisma
-        .busStationsConnection({
-          where,
-        })
+        .busStationsConnection()
         .aggregate()
         .count();
 
