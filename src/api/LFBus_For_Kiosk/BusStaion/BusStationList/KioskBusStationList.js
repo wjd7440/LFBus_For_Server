@@ -3,9 +3,9 @@ import { prisma } from "../../../../../generated/prisma-client";
 export default {
   Query: {
     KioskBusStationList: async (_, args) => {
-      const { keyword, orderBy, skip, after, before, first, last } = args;
+      // const { keyword, orderBy, skip, after, before, first, last } = args;
 
-      let where = null;
+      // let where = null;
 
       //   if (keyword) {
       //     where = { ...where, question_contains: keyword };
