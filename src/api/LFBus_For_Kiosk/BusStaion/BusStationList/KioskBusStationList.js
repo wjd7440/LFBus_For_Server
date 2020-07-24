@@ -5,16 +5,26 @@ export default {
     KioskBusStationList: async (_, args) => {
       const { keyword, orderBy, skip, after, before, first, last } = args;
 
-      // let where = null;
+      let where = null;
 
       //   if (keyword) {
       //     where = { ...where, question_contains: keyword };
       //   }
 
-      const busStations = await prisma.busStations();
+      const busStations = await prisma.busStations({
+        where,
+        orderBy,
+        skip, //offset
+        after,
+        before,
+        first, //limit
+        last,
+      });
 
       const count = await prisma
-        .busStationsConnection()
+        .busStationsConnection({
+          where,
+        })
         .aggregate()
         .count();
 

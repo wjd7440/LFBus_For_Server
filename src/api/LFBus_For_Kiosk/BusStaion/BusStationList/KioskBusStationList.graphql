@@ -1,5 +1,5 @@
 type BusStations {
-  busStations: [BusStations!]!
+  busStations: [BusStation!]!
   count: Int
 }
 
