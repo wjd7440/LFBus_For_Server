@@ -10,7 +10,6 @@ type BusStation {
 }
 
 type BusInfo {
-  id: ID!
   BUS_TYPE: Int!
   CAR_REG_NO: String!
   CHARACTER: Int!
