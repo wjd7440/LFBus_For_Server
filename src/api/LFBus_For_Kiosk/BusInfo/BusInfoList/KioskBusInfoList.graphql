@@ -4,5 +4,5 @@ type BusInfos {
 }
 
 type Query {
-  KioskBusInfoList: BusInfos!
+  KioskBusInfoList(CAR_REG_NUM:String!): BusInfos!
 }
