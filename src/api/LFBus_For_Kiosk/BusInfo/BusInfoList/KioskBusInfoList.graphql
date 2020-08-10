@@ -4,13 +4,5 @@ type BusInfos {
 }
 
 type Query {
-  KioskBusInfoList(
-    keyword: String
-    orderBy: String
-    skip: Int
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): BusInfos!
+  KioskBusInfoList: BusInfos!
 }
