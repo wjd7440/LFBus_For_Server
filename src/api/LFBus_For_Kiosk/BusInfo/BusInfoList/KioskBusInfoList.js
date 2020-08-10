@@ -5,14 +5,14 @@ export default {
     KioskBusInfoList: async (_, args) => {
       const { CAR_REG_NUM } = args;
 
-      const busInfos = await prisma.busInfos({where : CAR_REG_NUM});
+      const busInfoes = await prisma.busInfoes({where : CAR_REG_NUM});
 
       const count = await prisma
-        .busInfosConnection({where : CAR_REG_NUM})
+        .busInfoesConnection({where : CAR_REG_NUM})
         .aggregate()
         .count();
 
-      return { busInfos, count };
+      return { busInfoes, count };
     },
   },
 };
