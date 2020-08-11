@@ -1,8 +1,0 @@
-type BusInfoes {
-  busInfoes: [BusInfo!]!
-  count: Int
-}
-
-type Query {
-  KioskBusInfoList(CAR_REG_NO:String!): BusInfoes!
-}
