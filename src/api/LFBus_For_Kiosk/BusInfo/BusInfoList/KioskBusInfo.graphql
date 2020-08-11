@@ -1,3 +1,3 @@
 type Query {
-  KioskBusInfo(CAR_REG_NO: String!, BUS_TYPE: Int!): BusInfo!
+  KioskBusInfo(CAR_REG_NO: String!): BusInfo!
 }
