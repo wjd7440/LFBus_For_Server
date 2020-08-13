@@ -4,7 +4,7 @@ type User {
 }
 
 type BusStation {
-  id: ID!
+  id: Int!
   BUS_STOP_ID: Int!
   name: String!
   BUSSTOP_ENG_NM: String!
