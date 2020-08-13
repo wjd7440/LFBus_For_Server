@@ -4,9 +4,9 @@ type User {
 }
 
 type BusStation {
-  id: Int!
+  BUS_NODE_ID: Int!
   BUS_STOP_ID: Int!
-  name: String!
+  BUSSTOP_NM: String!
   BUSSTOP_ENG_NM: String!
   GPS_LATI: Int!
   GPS_LONG: Int!
