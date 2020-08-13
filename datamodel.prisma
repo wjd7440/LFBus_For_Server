@@ -4,9 +4,12 @@ type User {
 }
 
 type BusStation {
-  id: ID! @id
-  name: String!
-  busStationNo: Int!
+  BUS_NODE_ID: ID! @id
+  BUSSTOP_NM: String!
+  BUSSTOP_ENG_NM: String!
+  GPS_LATI: Int!
+  GPS_LONG: Int!
+
 }
 
 type BusInfo{
