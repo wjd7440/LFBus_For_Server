@@ -5,11 +5,17 @@ type User {
 
 type BusStation {
   BUS_NODE_ID: ID! @id
+  BUS_STOP_ID: Int!
   BUSSTOP_NM: String!
   BUSSTOP_ENG_NM: String!
   GPS_LATI: Int!
   GPS_LONG: Int!
-
+  BUSSTOP_SEQ: String
+  BUSSTOP_TP: String
+  ROAD_NM: String
+  ROAD_NM_ADDR: String
+  ROUTE_CD: Int
+  TOTAL_DIST: Int
 }
 
 type BusInfo{
