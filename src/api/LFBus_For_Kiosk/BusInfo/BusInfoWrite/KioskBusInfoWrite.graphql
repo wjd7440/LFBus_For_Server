@@ -1,3 +1,0 @@
-type Mutation {
-  KioskBusInfoWrite(carRegNo: String!, busType: String!): Boolean!
-}

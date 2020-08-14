@@ -1,3 +1,0 @@
-type Mutation {
-  KioskBusStationWrite(name: String!, busStationNo: Int!): Boolean!
-}
