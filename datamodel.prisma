@@ -8,8 +8,8 @@ type BusStation {
   BUS_STOP_ID: Int!
   BUSSTOP_NM: String!
   BUSSTOP_ENG_NM: String!
-  GPS_LATI: Float!
-  GPS_LONG: Float!
+  GPS_LATI: Decimal!
+  GPS_LONG: Decimal!
   BUSSTOP_SEQ: String
   BUSSTOP_TP: String
   ROAD_NM: String
