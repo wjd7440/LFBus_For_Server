@@ -18,6 +18,7 @@ export default {
         { GPS_LONG_lte: southWestLng },
       ];
 
+      console.log(where);
       const busStations = await prisma.busStations({ where });
 
       const count = await prisma
