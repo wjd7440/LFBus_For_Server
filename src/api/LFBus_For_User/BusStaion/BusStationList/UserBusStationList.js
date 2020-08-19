@@ -15,13 +15,19 @@ export default {
       if (southWestLat && northEastLat) {
         where = {
           ...where,
-          AND: [{ GPS_LATI_gte: southWestLat }, { GPS_LATI_lte: northEastLat }],
+          AND: [
+            { GPS_LATI_gte: parseFloat(southWestLat) },
+            { GPS_LATI_lte: parseFloat(northEastLat) },
+          ],
         };
       }
       if (southWestLng && northEastLng) {
         where = {
           ...where,
-          AND: [{ GPS_LONG_gte: southWestLng }, { GPS_LONG_lte: northEastLng }],
+          AND: [
+            { GPS_LONG_gte: parseFloat(southWestLng) },
+            { GPS_LONG_lte: parseFloat(northEastLng) },
+          ],
         };
       }
 

@@ -5,9 +5,9 @@ type BusStations {
 
 type Query {
   UserBusStationList(
-    northEastLat: Float!
-    northEastLng: Float!
-    southWestLat: Float!
-    southWestLng: Float!
+    northEastLat: String!
+    northEastLng: String!
+    southWestLat: String!
+    southWestLng: String!
   ): BusStations!
 }
