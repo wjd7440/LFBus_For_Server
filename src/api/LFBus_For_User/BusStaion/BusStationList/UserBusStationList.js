@@ -11,12 +11,20 @@ export default {
       //     where = { ...where, question_contains: keyword };
       //   }
 
-      let where = [
-        { GPS_LATI_gte: northEastLat },
-        { GPS_LATI_lte: southWestLat },
-        { GPS_LONG_gte: northEastLng },
-        { GPS_LONG_lte: southWestLng },
-      ];
+      let where = null;
+      if (southWestLat && northEastLat) {
+        where = {
+          ...where,
+          AND: [{ GPS_LATI_gte: southWestLat }, { GPS_LATI_lte: northEastLat }],
+        };
+      }
+      if (southWestLng && northEastLng) {
+        where = {
+          ...where,
+          AND: [{ GPS_LONG_gte: southWestLng }, { GPS_LONG_lte: northEastLng }],
+        };
+      }
+
       console.log(where);
       const busStations = await prisma.busStations({ where });
 
