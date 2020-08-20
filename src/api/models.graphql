@@ -16,6 +16,7 @@ type BusStation {
   ROAD_NM_ADDR: String
   ROUTE_CD: Int
   TOTAL_DIST: Int
+  DISTANCE: Int
 }
 
 type BusInfo {

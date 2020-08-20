@@ -1,44 +1,24 @@
 import { prisma } from "../../../../../generated/prisma-client";
+import mysql from "mysql2/promise";
+import { dbConfig } from "../../../../../config/db.config";
+const pool = mysql.createPool(dbConfig);
 
 export default {
   Query: {
     UserBusStationList: async (_, args) => {
-      const { northEastLat, northEastLng, southWestLat, southWestLng } = args;
+      const { latitude, longitude } = args;
 
-      // let where = null;
+      const busStations = await prisma.busStations();
 
-      //   if (keyword) {
-      //     where = { ...where, question_contains: keyword };
-      //   }
+      const count = await prisma.busStationsConnection().aggregate().count();
 
-      let where = null;
-      if (southWestLat && northEastLat) {
-        where = {
-          ...where,
-          AND: [
-            { GPS_LATI_gte: parseFloat(southWestLat) },
-            { GPS_LATI_lte: parseFloat(northEastLat) },
-          ],
-        };
-      }
-      if (southWestLng && northEastLng) {
-        where = {
-          ...where,
-          AND: [
-            { GPS_LONG_gte: parseFloat(southWestLng) },
-            { GPS_LONG_lte: parseFloat(northEastLng) },
-          ],
-        };
-      }
-
-      console.log(where);
-      const busStations = await prisma.busStations({ where });
-
-      const count = await prisma
-        .busStationsConnection({ where })
-        .aggregate()
-        .count();
-
+      const connection = await pool.getConnection(async (conn) => conn);
+      const [[DISTANCE]] = await connection.query(
+        `select distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude})`,
+        []
+      );
+      connection.release();
+      console.log(DISTANCE);
       return { busStations, count };
     },
   },

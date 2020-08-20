@@ -4,10 +4,5 @@ type BusStations {
 }
 
 type Query {
-  UserBusStationList(
-    northEastLat: String!
-    northEastLng: String!
-    southWestLat: String!
-    southWestLng: String!
-  ): BusStations!
+  UserBusStationList(latitude: String!, longitude: String!): BusStations!
 }
