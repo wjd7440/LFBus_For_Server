@@ -15,19 +15,20 @@ export default {
         // (error, results, fields) => {
         //   if (error) throw error;
         //   // console.log(results[0].BUS_NODE_ID);
-        //   results.map((obejct, index) => {
-        //     const busStation = {
-        //       BUS_NODE_ID: obejct.BUS_NODE_ID,
-        //       BUSSTOP_NM: obejct.BUSSTOP_NM,
-        //       DISTANCE: obejct.DISTANCE,
-        //     };
-        //     busStations.push(busStation);
-        //   });
+
         // }
       );
       connection.release();
 
-      console.log(results);
+      results.map((obejct, index) => {
+        const busStation = {
+          BUS_NODE_ID: obejct.BUS_NODE_ID,
+          BUSSTOP_NM: obejct.BUSSTOP_NM,
+          DISTANCE: obejct.DISTANCE,
+        };
+        busStations.push(busStation);
+      });
+      console.log(busStations);
 
       const count = busStations.length;
 
