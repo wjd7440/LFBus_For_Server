@@ -11,7 +11,7 @@ export default {
       let busStations = [];
       const connection = await pool.getConnection(async (conn) => conn);
       const [results] = await connection.query(
-        `SELECT BUS_NODE_ID, BUSSTOP_NM, distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) AS DISTANCE FROM BusStation WHERE distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) <= 1.5 `
+        `SELECT BUS_NODE_ID, BUSSTOP_NM, GPS_LATI, GPS_LONG, distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) AS DISTANCE FROM BusStation WHERE distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) <= 1.5 `
       );
       connection.release();
 
@@ -20,6 +20,8 @@ export default {
           BUS_NODE_ID: obejct.BUS_NODE_ID,
           BUSSTOP_NM: obejct.BUSSTOP_NM,
           DISTANCE: obejct.DISTANCE,
+          GPS_LATI: obejct.GPS_LATI,
+          GPS_LONG: obejct.GPS_LONG,
         };
         busStations.push(busStation);
       });
