@@ -10,11 +10,14 @@ export default {
 
       const busStations = await prisma.busStations();
 
-      const count = await prisma.busStationsConnection().aggregate().count();
+      const count = await prisma
+        .busStationsConnection()
+        .aggregate()
+        .count();
 
       const connection = await pool.getConnection(async (conn) => conn);
       const [[DISTANCE]] = await connection.query(
-        `select distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude})`,
+        `SELECT distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) AS DISTANCE FROM BusStation`,
         []
       );
       connection.release();
