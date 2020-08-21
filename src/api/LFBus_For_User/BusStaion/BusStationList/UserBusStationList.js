@@ -14,10 +14,14 @@ export default {
         `SELECT BUS_NODE_ID, BUSSTOP_NM, distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) AS DISTANCE FROM BusStation WHERE distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) <= 0.5 `,
         function(error, results, fields) {
           if (error) throw error;
-          console.log(results[0]);
-          // results.map((obejct, index) => {
-          //   busStations.push(obejct.TextRow);
-          // });
+          // console.log(results[0].BUS_NODE_ID);
+          results.map((obejct, index) => {
+            busStations.push({
+              BUS_NODE_ID: obejct.BUS_NODE_ID,
+              BUSSTOP_NM: obejct.BUSSTOP_NM,
+              DISTANCE: obejct.DISTANCE,
+            });
+          });
         }
       );
       connection.release();
