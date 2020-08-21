@@ -10,7 +10,7 @@ export default {
 
       const connection = await pool.getConnection(async (conn) => conn);
       const objects = await connection.query(
-        `SELECT distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) AS DISTANCE FROM BusStation`
+        `SELECT BUS_NODE_ID, BUSSTOP_NM, distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) AS DISTANCE FROM BusStation`
       );
       connection.release();
 
@@ -18,6 +18,8 @@ export default {
       objects.map((obejct, index) => {
         busStations.push(obejct.TextRow);
       });
+      console.log(objects);
+      console.log(busStations);
 
       const count = busStations.length;
 
