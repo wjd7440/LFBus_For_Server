@@ -16,12 +16,12 @@ export default {
         .count();
 
       const connection = await pool.getConnection(async (conn) => conn);
-      const [[DISTANCE]] = await connection.query(
+      const object = await connection.query(
         `SELECT distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) AS DISTANCE FROM BusStation`,
         []
       );
       connection.release();
-      console.log(DISTANCE);
+      console.log(object);
       return { busStations, count };
     },
   },
