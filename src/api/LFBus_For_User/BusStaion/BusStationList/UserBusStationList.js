@@ -8,20 +8,19 @@ export default {
     UserBusStationList: async (_, args) => {
       const { latitude, longitude } = args;
 
-      const busStations = await prisma.busStations();
-
-      const count = await prisma
-        .busStationsConnection()
-        .aggregate()
-        .count();
-
       const connection = await pool.getConnection(async (conn) => conn);
-      const object = await connection.query(
-        `SELECT distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) AS DISTANCE FROM BusStation`,
-        []
+      const objects = await connection.query(
+        `SELECT distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) AS DISTANCE FROM BusStation`
       );
       connection.release();
-      console.log(object);
+
+      let busStations = [];
+      objects.map(obejct, (index) => {
+        busStations.push(obejct.TextRow);
+      });
+
+      const count = busStations.length;
+
       return { busStations, count };
     },
   },
