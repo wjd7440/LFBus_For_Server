@@ -27,7 +27,7 @@ export default {
       );
       connection.release();
 
-      console.log(objects);
+      console.log(results);
 
       const count = busStations.length;
 
