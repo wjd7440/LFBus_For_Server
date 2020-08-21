@@ -15,7 +15,7 @@ export default {
       connection.release();
 
       let busStations = [];
-      objects.map(obejct, (index) => {
+      objects.map((obejct, index) => {
         busStations.push(obejct.TextRow);
       });
 
