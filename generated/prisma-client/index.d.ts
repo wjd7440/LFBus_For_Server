@@ -16,6 +16,8 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
+  busInfo: (where?: BusInfoWhereInput) => Promise<boolean>;
+  busStation: (where?: BusStationWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -38,6 +40,44 @@ export interface Prisma {
    * Queries
    */
 
+  busInfo: (where: BusInfoWhereUniqueInput) => BusInfoNullablePromise;
+  busInfoes: (args?: {
+    where?: BusInfoWhereInput;
+    orderBy?: BusInfoOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<BusInfo>;
+  busInfoesConnection: (args?: {
+    where?: BusInfoWhereInput;
+    orderBy?: BusInfoOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => BusInfoConnectionPromise;
+  busStation: (where: BusStationWhereUniqueInput) => BusStationNullablePromise;
+  busStations: (args?: {
+    where?: BusStationWhereInput;
+    orderBy?: BusStationOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<BusStation>;
+  busStationsConnection: (args?: {
+    where?: BusStationWhereInput;
+    orderBy?: BusStationOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => BusStationConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserNullablePromise;
   users: (args?: {
     where?: UserWhereInput;
@@ -63,6 +103,38 @@ export interface Prisma {
    * Mutations
    */
 
+  createBusInfo: (data: BusInfoCreateInput) => BusInfoPromise;
+  updateBusInfo: (args: {
+    data: BusInfoUpdateInput;
+    where: BusInfoWhereUniqueInput;
+  }) => BusInfoPromise;
+  updateManyBusInfoes: (args: {
+    data: BusInfoUpdateManyMutationInput;
+    where?: BusInfoWhereInput;
+  }) => BatchPayloadPromise;
+  upsertBusInfo: (args: {
+    where: BusInfoWhereUniqueInput;
+    create: BusInfoCreateInput;
+    update: BusInfoUpdateInput;
+  }) => BusInfoPromise;
+  deleteBusInfo: (where: BusInfoWhereUniqueInput) => BusInfoPromise;
+  deleteManyBusInfoes: (where?: BusInfoWhereInput) => BatchPayloadPromise;
+  createBusStation: (data: BusStationCreateInput) => BusStationPromise;
+  updateBusStation: (args: {
+    data: BusStationUpdateInput;
+    where: BusStationWhereUniqueInput;
+  }) => BusStationPromise;
+  updateManyBusStations: (args: {
+    data: BusStationUpdateManyMutationInput;
+    where?: BusStationWhereInput;
+  }) => BatchPayloadPromise;
+  upsertBusStation: (args: {
+    where: BusStationWhereUniqueInput;
+    create: BusStationCreateInput;
+    update: BusStationUpdateInput;
+  }) => BusStationPromise;
+  deleteBusStation: (where: BusStationWhereUniqueInput) => BusStationPromise;
+  deleteManyBusStations: (where?: BusStationWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (args: {
     data: UserUpdateInput;
@@ -88,6 +160,12 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  busInfo: (
+    where?: BusInfoSubscriptionWhereInput
+  ) => BusInfoSubscriptionPayloadSubscription;
+  busStation: (
+    where?: BusStationSubscriptionWhereInput
+  ) => BusStationSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -101,21 +179,289 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type UserOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
+export type BusInfoOrderByInput =
+  | "BUS_TYPE_ASC"
+  | "BUS_TYPE_DESC"
+  | "CAR_REG_NO_ASC"
+  | "CAR_REG_NO_DESC"
+  | "CHARACTER_ASC"
+  | "CHARACTER_DESC"
+  | "COMP_CD_ASC"
+  | "COMP_CD_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+
+export type BusStationOrderByInput =
+  | "BUS_NODE_ID_ASC"
+  | "BUS_NODE_ID_DESC"
+  | "BUS_STOP_ID_ASC"
+  | "BUS_STOP_ID_DESC"
+  | "BUSSTOP_NM_ASC"
+  | "BUSSTOP_NM_DESC"
+  | "BUSSTOP_ENG_NM_ASC"
+  | "BUSSTOP_ENG_NM_DESC"
+  | "GPS_LATI_ASC"
+  | "GPS_LATI_DESC"
+  | "GPS_LONG_ASC"
+  | "GPS_LONG_DESC"
+  | "BUSSTOP_SEQ_ASC"
+  | "BUSSTOP_SEQ_DESC"
+  | "BUSSTOP_TP_ASC"
+  | "BUSSTOP_TP_DESC"
+  | "ROAD_NM_ASC"
+  | "ROAD_NM_DESC"
+  | "ROAD_NM_ADDR_ASC"
+  | "ROAD_NM_ADDR_DESC"
+  | "ROUTE_CD_ASC"
+  | "ROUTE_CD_DESC"
+  | "TOTAL_DIST_ASC"
+  | "TOTAL_DIST_DESC";
+
+export type UserOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
+
+export type BusStationWhereUniqueInput = AtLeastOne<{
+  BUS_NODE_ID: Maybe<ID_Input>;
+}>;
+
+export interface BusStationWhereInput {
+  BUS_NODE_ID?: Maybe<ID_Input>;
+  BUS_NODE_ID_not?: Maybe<ID_Input>;
+  BUS_NODE_ID_in?: Maybe<ID_Input[] | ID_Input>;
+  BUS_NODE_ID_not_in?: Maybe<ID_Input[] | ID_Input>;
+  BUS_NODE_ID_lt?: Maybe<ID_Input>;
+  BUS_NODE_ID_lte?: Maybe<ID_Input>;
+  BUS_NODE_ID_gt?: Maybe<ID_Input>;
+  BUS_NODE_ID_gte?: Maybe<ID_Input>;
+  BUS_NODE_ID_contains?: Maybe<ID_Input>;
+  BUS_NODE_ID_not_contains?: Maybe<ID_Input>;
+  BUS_NODE_ID_starts_with?: Maybe<ID_Input>;
+  BUS_NODE_ID_not_starts_with?: Maybe<ID_Input>;
+  BUS_NODE_ID_ends_with?: Maybe<ID_Input>;
+  BUS_NODE_ID_not_ends_with?: Maybe<ID_Input>;
+  BUS_STOP_ID?: Maybe<Int>;
+  BUS_STOP_ID_not?: Maybe<Int>;
+  BUS_STOP_ID_in?: Maybe<Int[] | Int>;
+  BUS_STOP_ID_not_in?: Maybe<Int[] | Int>;
+  BUS_STOP_ID_lt?: Maybe<Int>;
+  BUS_STOP_ID_lte?: Maybe<Int>;
+  BUS_STOP_ID_gt?: Maybe<Int>;
+  BUS_STOP_ID_gte?: Maybe<Int>;
+  BUSSTOP_NM?: Maybe<String>;
+  BUSSTOP_NM_not?: Maybe<String>;
+  BUSSTOP_NM_in?: Maybe<String[] | String>;
+  BUSSTOP_NM_not_in?: Maybe<String[] | String>;
+  BUSSTOP_NM_lt?: Maybe<String>;
+  BUSSTOP_NM_lte?: Maybe<String>;
+  BUSSTOP_NM_gt?: Maybe<String>;
+  BUSSTOP_NM_gte?: Maybe<String>;
+  BUSSTOP_NM_contains?: Maybe<String>;
+  BUSSTOP_NM_not_contains?: Maybe<String>;
+  BUSSTOP_NM_starts_with?: Maybe<String>;
+  BUSSTOP_NM_not_starts_with?: Maybe<String>;
+  BUSSTOP_NM_ends_with?: Maybe<String>;
+  BUSSTOP_NM_not_ends_with?: Maybe<String>;
+  BUSSTOP_ENG_NM?: Maybe<String>;
+  BUSSTOP_ENG_NM_not?: Maybe<String>;
+  BUSSTOP_ENG_NM_in?: Maybe<String[] | String>;
+  BUSSTOP_ENG_NM_not_in?: Maybe<String[] | String>;
+  BUSSTOP_ENG_NM_lt?: Maybe<String>;
+  BUSSTOP_ENG_NM_lte?: Maybe<String>;
+  BUSSTOP_ENG_NM_gt?: Maybe<String>;
+  BUSSTOP_ENG_NM_gte?: Maybe<String>;
+  BUSSTOP_ENG_NM_contains?: Maybe<String>;
+  BUSSTOP_ENG_NM_not_contains?: Maybe<String>;
+  BUSSTOP_ENG_NM_starts_with?: Maybe<String>;
+  BUSSTOP_ENG_NM_not_starts_with?: Maybe<String>;
+  BUSSTOP_ENG_NM_ends_with?: Maybe<String>;
+  BUSSTOP_ENG_NM_not_ends_with?: Maybe<String>;
+  GPS_LATI?: Maybe<Float>;
+  GPS_LATI_not?: Maybe<Float>;
+  GPS_LATI_in?: Maybe<Float[] | Float>;
+  GPS_LATI_not_in?: Maybe<Float[] | Float>;
+  GPS_LATI_lt?: Maybe<Float>;
+  GPS_LATI_lte?: Maybe<Float>;
+  GPS_LATI_gt?: Maybe<Float>;
+  GPS_LATI_gte?: Maybe<Float>;
+  GPS_LONG?: Maybe<Float>;
+  GPS_LONG_not?: Maybe<Float>;
+  GPS_LONG_in?: Maybe<Float[] | Float>;
+  GPS_LONG_not_in?: Maybe<Float[] | Float>;
+  GPS_LONG_lt?: Maybe<Float>;
+  GPS_LONG_lte?: Maybe<Float>;
+  GPS_LONG_gt?: Maybe<Float>;
+  GPS_LONG_gte?: Maybe<Float>;
+  BUSSTOP_SEQ?: Maybe<String>;
+  BUSSTOP_SEQ_not?: Maybe<String>;
+  BUSSTOP_SEQ_in?: Maybe<String[] | String>;
+  BUSSTOP_SEQ_not_in?: Maybe<String[] | String>;
+  BUSSTOP_SEQ_lt?: Maybe<String>;
+  BUSSTOP_SEQ_lte?: Maybe<String>;
+  BUSSTOP_SEQ_gt?: Maybe<String>;
+  BUSSTOP_SEQ_gte?: Maybe<String>;
+  BUSSTOP_SEQ_contains?: Maybe<String>;
+  BUSSTOP_SEQ_not_contains?: Maybe<String>;
+  BUSSTOP_SEQ_starts_with?: Maybe<String>;
+  BUSSTOP_SEQ_not_starts_with?: Maybe<String>;
+  BUSSTOP_SEQ_ends_with?: Maybe<String>;
+  BUSSTOP_SEQ_not_ends_with?: Maybe<String>;
+  BUSSTOP_TP?: Maybe<String>;
+  BUSSTOP_TP_not?: Maybe<String>;
+  BUSSTOP_TP_in?: Maybe<String[] | String>;
+  BUSSTOP_TP_not_in?: Maybe<String[] | String>;
+  BUSSTOP_TP_lt?: Maybe<String>;
+  BUSSTOP_TP_lte?: Maybe<String>;
+  BUSSTOP_TP_gt?: Maybe<String>;
+  BUSSTOP_TP_gte?: Maybe<String>;
+  BUSSTOP_TP_contains?: Maybe<String>;
+  BUSSTOP_TP_not_contains?: Maybe<String>;
+  BUSSTOP_TP_starts_with?: Maybe<String>;
+  BUSSTOP_TP_not_starts_with?: Maybe<String>;
+  BUSSTOP_TP_ends_with?: Maybe<String>;
+  BUSSTOP_TP_not_ends_with?: Maybe<String>;
+  ROAD_NM?: Maybe<String>;
+  ROAD_NM_not?: Maybe<String>;
+  ROAD_NM_in?: Maybe<String[] | String>;
+  ROAD_NM_not_in?: Maybe<String[] | String>;
+  ROAD_NM_lt?: Maybe<String>;
+  ROAD_NM_lte?: Maybe<String>;
+  ROAD_NM_gt?: Maybe<String>;
+  ROAD_NM_gte?: Maybe<String>;
+  ROAD_NM_contains?: Maybe<String>;
+  ROAD_NM_not_contains?: Maybe<String>;
+  ROAD_NM_starts_with?: Maybe<String>;
+  ROAD_NM_not_starts_with?: Maybe<String>;
+  ROAD_NM_ends_with?: Maybe<String>;
+  ROAD_NM_not_ends_with?: Maybe<String>;
+  ROAD_NM_ADDR?: Maybe<String>;
+  ROAD_NM_ADDR_not?: Maybe<String>;
+  ROAD_NM_ADDR_in?: Maybe<String[] | String>;
+  ROAD_NM_ADDR_not_in?: Maybe<String[] | String>;
+  ROAD_NM_ADDR_lt?: Maybe<String>;
+  ROAD_NM_ADDR_lte?: Maybe<String>;
+  ROAD_NM_ADDR_gt?: Maybe<String>;
+  ROAD_NM_ADDR_gte?: Maybe<String>;
+  ROAD_NM_ADDR_contains?: Maybe<String>;
+  ROAD_NM_ADDR_not_contains?: Maybe<String>;
+  ROAD_NM_ADDR_starts_with?: Maybe<String>;
+  ROAD_NM_ADDR_not_starts_with?: Maybe<String>;
+  ROAD_NM_ADDR_ends_with?: Maybe<String>;
+  ROAD_NM_ADDR_not_ends_with?: Maybe<String>;
+  ROUTE_CD?: Maybe<Int>;
+  ROUTE_CD_not?: Maybe<Int>;
+  ROUTE_CD_in?: Maybe<Int[] | Int>;
+  ROUTE_CD_not_in?: Maybe<Int[] | Int>;
+  ROUTE_CD_lt?: Maybe<Int>;
+  ROUTE_CD_lte?: Maybe<Int>;
+  ROUTE_CD_gt?: Maybe<Int>;
+  ROUTE_CD_gte?: Maybe<Int>;
+  TOTAL_DIST?: Maybe<Int>;
+  TOTAL_DIST_not?: Maybe<Int>;
+  TOTAL_DIST_in?: Maybe<Int[] | Int>;
+  TOTAL_DIST_not_in?: Maybe<Int[] | Int>;
+  TOTAL_DIST_lt?: Maybe<Int>;
+  TOTAL_DIST_lte?: Maybe<Int>;
+  TOTAL_DIST_gt?: Maybe<Int>;
+  TOTAL_DIST_gte?: Maybe<Int>;
+  AND?: Maybe<BusStationWhereInput[] | BusStationWhereInput>;
+  OR?: Maybe<BusStationWhereInput[] | BusStationWhereInput>;
+  NOT?: Maybe<BusStationWhereInput[] | BusStationWhereInput>;
+}
+
+export type BusInfoWhereUniqueInput = AtLeastOne<{
+  CAR_REG_NO: Maybe<ID_Input>;
+}>;
+
+export interface BusStationSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<BusStationWhereInput>;
+  AND?: Maybe<
+    BusStationSubscriptionWhereInput[] | BusStationSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    BusStationSubscriptionWhereInput[] | BusStationSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    BusStationSubscriptionWhereInput[] | BusStationSubscriptionWhereInput
+  >;
+}
+
+export interface BusInfoWhereInput {
+  BUS_TYPE?: Maybe<Int>;
+  BUS_TYPE_not?: Maybe<Int>;
+  BUS_TYPE_in?: Maybe<Int[] | Int>;
+  BUS_TYPE_not_in?: Maybe<Int[] | Int>;
+  BUS_TYPE_lt?: Maybe<Int>;
+  BUS_TYPE_lte?: Maybe<Int>;
+  BUS_TYPE_gt?: Maybe<Int>;
+  BUS_TYPE_gte?: Maybe<Int>;
+  CAR_REG_NO?: Maybe<ID_Input>;
+  CAR_REG_NO_not?: Maybe<ID_Input>;
+  CAR_REG_NO_in?: Maybe<ID_Input[] | ID_Input>;
+  CAR_REG_NO_not_in?: Maybe<ID_Input[] | ID_Input>;
+  CAR_REG_NO_lt?: Maybe<ID_Input>;
+  CAR_REG_NO_lte?: Maybe<ID_Input>;
+  CAR_REG_NO_gt?: Maybe<ID_Input>;
+  CAR_REG_NO_gte?: Maybe<ID_Input>;
+  CAR_REG_NO_contains?: Maybe<ID_Input>;
+  CAR_REG_NO_not_contains?: Maybe<ID_Input>;
+  CAR_REG_NO_starts_with?: Maybe<ID_Input>;
+  CAR_REG_NO_not_starts_with?: Maybe<ID_Input>;
+  CAR_REG_NO_ends_with?: Maybe<ID_Input>;
+  CAR_REG_NO_not_ends_with?: Maybe<ID_Input>;
+  CHARACTER?: Maybe<Int>;
+  CHARACTER_not?: Maybe<Int>;
+  CHARACTER_in?: Maybe<Int[] | Int>;
+  CHARACTER_not_in?: Maybe<Int[] | Int>;
+  CHARACTER_lt?: Maybe<Int>;
+  CHARACTER_lte?: Maybe<Int>;
+  CHARACTER_gt?: Maybe<Int>;
+  CHARACTER_gte?: Maybe<Int>;
+  COMP_CD?: Maybe<Int>;
+  COMP_CD_not?: Maybe<Int>;
+  COMP_CD_in?: Maybe<Int[] | Int>;
+  COMP_CD_not_in?: Maybe<Int[] | Int>;
+  COMP_CD_lt?: Maybe<Int>;
+  COMP_CD_lte?: Maybe<Int>;
+  COMP_CD_gt?: Maybe<Int>;
+  COMP_CD_gte?: Maybe<Int>;
+  AND?: Maybe<BusInfoWhereInput[] | BusInfoWhereInput>;
+  OR?: Maybe<BusInfoWhereInput[] | BusInfoWhereInput>;
+  NOT?: Maybe<BusInfoWhereInput[] | BusInfoWhereInput>;
+}
+
+export interface BusInfoUpdateManyMutationInput {
+  BUS_TYPE?: Maybe<Int>;
+  CHARACTER?: Maybe<Int>;
+  COMP_CD?: Maybe<Int>;
+}
+
+export interface UserUpdateManyMutationInput {
+  name?: Maybe<String>;
+}
+
+export interface BusInfoUpdateInput {
+  BUS_TYPE?: Maybe<Int>;
+  CHARACTER?: Maybe<Int>;
+  COMP_CD?: Maybe<Int>;
+}
 
 export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
 }
 
-export interface UserUpdateInput {
-  name?: Maybe<String>;
-}
-
-export interface UserUpdateManyMutationInput {
-  name?: Maybe<String>;
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
 export interface UserWhereInput {
@@ -152,55 +498,115 @@ export interface UserWhereInput {
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export interface UserSubscriptionWhereInput {
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface BusInfoCreateInput {
+  BUS_TYPE: Int;
+  CAR_REG_NO?: Maybe<ID_Input>;
+  CHARACTER: Int;
+  COMP_CD: Int;
+}
+
+export interface BusStationUpdateInput {
+  BUS_STOP_ID?: Maybe<Int>;
+  BUSSTOP_NM?: Maybe<String>;
+  BUSSTOP_ENG_NM?: Maybe<String>;
+  GPS_LATI?: Maybe<Float>;
+  GPS_LONG?: Maybe<Float>;
+  BUSSTOP_SEQ?: Maybe<String>;
+  BUSSTOP_TP?: Maybe<String>;
+  ROAD_NM?: Maybe<String>;
+  ROAD_NM_ADDR?: Maybe<String>;
+  ROUTE_CD?: Maybe<Int>;
+  TOTAL_DIST?: Maybe<Int>;
+}
+
+export interface BusStationUpdateManyMutationInput {
+  BUS_STOP_ID?: Maybe<Int>;
+  BUSSTOP_NM?: Maybe<String>;
+  BUSSTOP_ENG_NM?: Maybe<String>;
+  GPS_LATI?: Maybe<Float>;
+  GPS_LONG?: Maybe<Float>;
+  BUSSTOP_SEQ?: Maybe<String>;
+  BUSSTOP_TP?: Maybe<String>;
+  ROAD_NM?: Maybe<String>;
+  ROAD_NM_ADDR?: Maybe<String>;
+  ROUTE_CD?: Maybe<Int>;
+  TOTAL_DIST?: Maybe<Int>;
+}
+
+export interface UserUpdateInput {
+  name?: Maybe<String>;
+}
+
+export interface BusInfoSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  node?: Maybe<BusInfoWhereInput>;
+  AND?: Maybe<BusInfoSubscriptionWhereInput[] | BusInfoSubscriptionWhereInput>;
+  OR?: Maybe<BusInfoSubscriptionWhereInput[] | BusInfoSubscriptionWhereInput>;
+  NOT?: Maybe<BusInfoSubscriptionWhereInput[] | BusInfoSubscriptionWhereInput>;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface BusStationCreateInput {
+  BUS_NODE_ID?: Maybe<ID_Input>;
+  BUS_STOP_ID: Int;
+  BUSSTOP_NM: String;
+  BUSSTOP_ENG_NM: String;
+  GPS_LATI: Float;
+  GPS_LONG: Float;
+  BUSSTOP_SEQ?: Maybe<String>;
+  BUSSTOP_TP?: Maybe<String>;
+  ROAD_NM?: Maybe<String>;
+  ROAD_NM_ADDR?: Maybe<String>;
+  ROUTE_CD?: Maybe<Int>;
+  TOTAL_DIST?: Maybe<Int>;
+}
 
 export interface NodeNode {
   id: ID_Output;
 }
 
-export interface AggregateUser {
-  count: Int;
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
     Fragmentable {
-  count: () => Promise<Int>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
 }
 
-export interface BatchPayload {
-  count: Long;
+export interface BusInfoEdge {
+  node: BusInfo;
+  cursor: String;
 }
 
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
+export interface BusInfoEdgePromise extends Promise<BusInfoEdge>, Fragmentable {
+  node: <T = BusInfoPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface BusInfoEdgeSubscription
+  extends Promise<AsyncIterator<BusInfoEdge>>,
     Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
+  node: <T = BusInfoSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserPreviousValues {
@@ -222,6 +628,47 @@ export interface UserPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
 }
 
+export interface AggregateBusInfo {
+  count: Int;
+}
+
+export interface AggregateBusInfoPromise
+  extends Promise<AggregateBusInfo>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateBusInfoSubscription
+  extends Promise<AsyncIterator<AggregateBusInfo>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BusStationSubscriptionPayload {
+  mutation: MutationType;
+  node: BusStation;
+  updatedFields: String[];
+  previousValues: BusStationPreviousValues;
+}
+
+export interface BusStationSubscriptionPayloadPromise
+  extends Promise<BusStationSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = BusStationPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = BusStationPreviousValuesPromise>() => T;
+}
+
+export interface BusStationSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<BusStationSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = BusStationSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = BusStationPreviousValuesSubscription>() => T;
+}
+
 export interface UserEdge {
   node: User;
   cursor: String;
@@ -237,6 +684,320 @@ export interface UserEdgeSubscription
     Fragmentable {
   node: <T = UserSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface User {
+  id: ID_Output;
+  name: String;
+}
+
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserNullablePromise
+  extends Promise<User | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface BusStationEdge {
+  node: BusStation;
+  cursor: String;
+}
+
+export interface BusStationEdgePromise
+  extends Promise<BusStationEdge>,
+    Fragmentable {
+  node: <T = BusStationPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface BusStationEdgeSubscription
+  extends Promise<AsyncIterator<BusStationEdge>>,
+    Fragmentable {
+  node: <T = BusStationSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface BusInfo {
+  BUS_TYPE: Int;
+  CAR_REG_NO: ID_Output;
+  CHARACTER: Int;
+  COMP_CD: Int;
+}
+
+export interface BusInfoPromise extends Promise<BusInfo>, Fragmentable {
+  BUS_TYPE: () => Promise<Int>;
+  CAR_REG_NO: () => Promise<ID_Output>;
+  CHARACTER: () => Promise<Int>;
+  COMP_CD: () => Promise<Int>;
+}
+
+export interface BusInfoSubscription
+  extends Promise<AsyncIterator<BusInfo>>,
+    Fragmentable {
+  BUS_TYPE: () => Promise<AsyncIterator<Int>>;
+  CAR_REG_NO: () => Promise<AsyncIterator<ID_Output>>;
+  CHARACTER: () => Promise<AsyncIterator<Int>>;
+  COMP_CD: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BusInfoNullablePromise
+  extends Promise<BusInfo | null>,
+    Fragmentable {
+  BUS_TYPE: () => Promise<Int>;
+  CAR_REG_NO: () => Promise<ID_Output>;
+  CHARACTER: () => Promise<Int>;
+  COMP_CD: () => Promise<Int>;
+}
+
+export interface BusInfoPreviousValues {
+  BUS_TYPE: Int;
+  CAR_REG_NO: ID_Output;
+  CHARACTER: Int;
+  COMP_CD: Int;
+}
+
+export interface BusInfoPreviousValuesPromise
+  extends Promise<BusInfoPreviousValues>,
+    Fragmentable {
+  BUS_TYPE: () => Promise<Int>;
+  CAR_REG_NO: () => Promise<ID_Output>;
+  CHARACTER: () => Promise<Int>;
+  COMP_CD: () => Promise<Int>;
+}
+
+export interface BusInfoPreviousValuesSubscription
+  extends Promise<AsyncIterator<BusInfoPreviousValues>>,
+    Fragmentable {
+  BUS_TYPE: () => Promise<AsyncIterator<Int>>;
+  CAR_REG_NO: () => Promise<AsyncIterator<ID_Output>>;
+  CHARACTER: () => Promise<AsyncIterator<Int>>;
+  COMP_CD: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BusInfoSubscriptionPayload {
+  mutation: MutationType;
+  node: BusInfo;
+  updatedFields: String[];
+  previousValues: BusInfoPreviousValues;
+}
+
+export interface BusInfoSubscriptionPayloadPromise
+  extends Promise<BusInfoSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = BusInfoPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = BusInfoPreviousValuesPromise>() => T;
+}
+
+export interface BusInfoSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<BusInfoSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = BusInfoSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = BusInfoPreviousValuesSubscription>() => T;
+}
+
+export interface BusStationPreviousValues {
+  BUS_NODE_ID: ID_Output;
+  BUS_STOP_ID: Int;
+  BUSSTOP_NM: String;
+  BUSSTOP_ENG_NM: String;
+  GPS_LATI: Float;
+  GPS_LONG: Float;
+  BUSSTOP_SEQ?: String;
+  BUSSTOP_TP?: String;
+  ROAD_NM?: String;
+  ROAD_NM_ADDR?: String;
+  ROUTE_CD?: Int;
+  TOTAL_DIST?: Int;
+}
+
+export interface BusStationPreviousValuesPromise
+  extends Promise<BusStationPreviousValues>,
+    Fragmentable {
+  BUS_NODE_ID: () => Promise<ID_Output>;
+  BUS_STOP_ID: () => Promise<Int>;
+  BUSSTOP_NM: () => Promise<String>;
+  BUSSTOP_ENG_NM: () => Promise<String>;
+  GPS_LATI: () => Promise<Float>;
+  GPS_LONG: () => Promise<Float>;
+  BUSSTOP_SEQ: () => Promise<String>;
+  BUSSTOP_TP: () => Promise<String>;
+  ROAD_NM: () => Promise<String>;
+  ROAD_NM_ADDR: () => Promise<String>;
+  ROUTE_CD: () => Promise<Int>;
+  TOTAL_DIST: () => Promise<Int>;
+}
+
+export interface BusStationPreviousValuesSubscription
+  extends Promise<AsyncIterator<BusStationPreviousValues>>,
+    Fragmentable {
+  BUS_NODE_ID: () => Promise<AsyncIterator<ID_Output>>;
+  BUS_STOP_ID: () => Promise<AsyncIterator<Int>>;
+  BUSSTOP_NM: () => Promise<AsyncIterator<String>>;
+  BUSSTOP_ENG_NM: () => Promise<AsyncIterator<String>>;
+  GPS_LATI: () => Promise<AsyncIterator<Float>>;
+  GPS_LONG: () => Promise<AsyncIterator<Float>>;
+  BUSSTOP_SEQ: () => Promise<AsyncIterator<String>>;
+  BUSSTOP_TP: () => Promise<AsyncIterator<String>>;
+  ROAD_NM: () => Promise<AsyncIterator<String>>;
+  ROAD_NM_ADDR: () => Promise<AsyncIterator<String>>;
+  ROUTE_CD: () => Promise<AsyncIterator<Int>>;
+  TOTAL_DIST: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BusInfoConnection {
+  pageInfo: PageInfo;
+  edges: BusInfoEdge[];
+}
+
+export interface BusInfoConnectionPromise
+  extends Promise<BusInfoConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<BusInfoEdge>>() => T;
+  aggregate: <T = AggregateBusInfoPromise>() => T;
+}
+
+export interface BusInfoConnectionSubscription
+  extends Promise<AsyncIterator<BusInfoConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<BusInfoEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateBusInfoSubscription>() => T;
+}
+
+export interface BusStation {
+  BUS_NODE_ID: ID_Output;
+  BUS_STOP_ID: Int;
+  BUSSTOP_NM: String;
+  BUSSTOP_ENG_NM: String;
+  GPS_LATI: Float;
+  GPS_LONG: Float;
+  BUSSTOP_SEQ?: String;
+  BUSSTOP_TP?: String;
+  ROAD_NM?: String;
+  ROAD_NM_ADDR?: String;
+  ROUTE_CD?: Int;
+  TOTAL_DIST?: Int;
+}
+
+export interface BusStationPromise extends Promise<BusStation>, Fragmentable {
+  BUS_NODE_ID: () => Promise<ID_Output>;
+  BUS_STOP_ID: () => Promise<Int>;
+  BUSSTOP_NM: () => Promise<String>;
+  BUSSTOP_ENG_NM: () => Promise<String>;
+  GPS_LATI: () => Promise<Float>;
+  GPS_LONG: () => Promise<Float>;
+  BUSSTOP_SEQ: () => Promise<String>;
+  BUSSTOP_TP: () => Promise<String>;
+  ROAD_NM: () => Promise<String>;
+  ROAD_NM_ADDR: () => Promise<String>;
+  ROUTE_CD: () => Promise<Int>;
+  TOTAL_DIST: () => Promise<Int>;
+}
+
+export interface BusStationSubscription
+  extends Promise<AsyncIterator<BusStation>>,
+    Fragmentable {
+  BUS_NODE_ID: () => Promise<AsyncIterator<ID_Output>>;
+  BUS_STOP_ID: () => Promise<AsyncIterator<Int>>;
+  BUSSTOP_NM: () => Promise<AsyncIterator<String>>;
+  BUSSTOP_ENG_NM: () => Promise<AsyncIterator<String>>;
+  GPS_LATI: () => Promise<AsyncIterator<Float>>;
+  GPS_LONG: () => Promise<AsyncIterator<Float>>;
+  BUSSTOP_SEQ: () => Promise<AsyncIterator<String>>;
+  BUSSTOP_TP: () => Promise<AsyncIterator<String>>;
+  ROAD_NM: () => Promise<AsyncIterator<String>>;
+  ROAD_NM_ADDR: () => Promise<AsyncIterator<String>>;
+  ROUTE_CD: () => Promise<AsyncIterator<Int>>;
+  TOTAL_DIST: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BusStationNullablePromise
+  extends Promise<BusStation | null>,
+    Fragmentable {
+  BUS_NODE_ID: () => Promise<ID_Output>;
+  BUS_STOP_ID: () => Promise<Int>;
+  BUSSTOP_NM: () => Promise<String>;
+  BUSSTOP_ENG_NM: () => Promise<String>;
+  GPS_LATI: () => Promise<Float>;
+  GPS_LONG: () => Promise<Float>;
+  BUSSTOP_SEQ: () => Promise<String>;
+  BUSSTOP_TP: () => Promise<String>;
+  ROAD_NM: () => Promise<String>;
+  ROAD_NM_ADDR: () => Promise<String>;
+  ROUTE_CD: () => Promise<Int>;
+  TOTAL_DIST: () => Promise<Int>;
 }
 
 export interface UserSubscriptionPayload {
@@ -264,80 +1025,47 @@ export interface UserSubscriptionPayloadSubscription
   previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface User {
-  id: ID_Output;
-  name: String;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface UserConnection {
+export interface BusStationConnection {
   pageInfo: PageInfo;
-  edges: UserEdge[];
+  edges: BusStationEdge[];
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface BusStationConnectionPromise
+  extends Promise<BusStationConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<BusStationEdge>>() => T;
+  aggregate: <T = AggregateBusStationPromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface BusStationConnectionSubscription
+  extends Promise<AsyncIterator<BusStationConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<BusStationEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateBusStationSubscription>() => T;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
+export interface AggregateBusStation {
+  count: Int;
 }
 
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
+export interface AggregateBusStationPromise
+  extends Promise<AggregateBusStation>,
     Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<Int>;
+}
+
+export interface AggregateBusStationSubscription
+  extends Promise<AsyncIterator<AggregateBusStation>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 /*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+The `Boolean` scalar type represents `true` or `false`.
 */
-export type String = string;
-
-export type Long = string;
+export type Boolean = boolean;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -345,15 +1073,22 @@ The `ID` scalar type represents a unique identifier, often used to refetch an ob
 export type ID_Input = string | number;
 export type ID_Output = string;
 
+export type Long = string;
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
+*/
+export type Float = number;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
 */
 export type Int = number;
-
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
 
 /**
  * Model Metadata
@@ -362,6 +1097,14 @@ export type Boolean = boolean;
 export const models: Model[] = [
   {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "BusStation",
+    embedded: false
+  },
+  {
+    name: "BusInfo",
     embedded: false
   }
 ];

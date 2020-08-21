@@ -3,7 +3,15 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateUser {
+/* GraphQL */ `type AggregateBusInfo {
+  count: Int!
+}
+
+type AggregateBusStation {
+  count: Int!
+}
+
+type AggregateUser {
   count: Int!
 }
 
@@ -11,9 +19,419 @@ type BatchPayload {
   count: Long!
 }
 
+type BusInfo {
+  BUS_TYPE: Int!
+  CAR_REG_NO: ID!
+  CHARACTER: Int!
+  COMP_CD: Int!
+}
+
+type BusInfoConnection {
+  pageInfo: PageInfo!
+  edges: [BusInfoEdge]!
+  aggregate: AggregateBusInfo!
+}
+
+input BusInfoCreateInput {
+  BUS_TYPE: Int!
+  CAR_REG_NO: ID
+  CHARACTER: Int!
+  COMP_CD: Int!
+}
+
+type BusInfoEdge {
+  node: BusInfo!
+  cursor: String!
+}
+
+enum BusInfoOrderByInput {
+  BUS_TYPE_ASC
+  BUS_TYPE_DESC
+  CAR_REG_NO_ASC
+  CAR_REG_NO_DESC
+  CHARACTER_ASC
+  CHARACTER_DESC
+  COMP_CD_ASC
+  COMP_CD_DESC
+}
+
+type BusInfoPreviousValues {
+  BUS_TYPE: Int!
+  CAR_REG_NO: ID!
+  CHARACTER: Int!
+  COMP_CD: Int!
+}
+
+type BusInfoSubscriptionPayload {
+  mutation: MutationType!
+  node: BusInfo
+  updatedFields: [String!]
+  previousValues: BusInfoPreviousValues
+}
+
+input BusInfoSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: BusInfoWhereInput
+  AND: [BusInfoSubscriptionWhereInput!]
+  OR: [BusInfoSubscriptionWhereInput!]
+  NOT: [BusInfoSubscriptionWhereInput!]
+}
+
+input BusInfoUpdateInput {
+  BUS_TYPE: Int
+  CHARACTER: Int
+  COMP_CD: Int
+}
+
+input BusInfoUpdateManyMutationInput {
+  BUS_TYPE: Int
+  CHARACTER: Int
+  COMP_CD: Int
+}
+
+input BusInfoWhereInput {
+  BUS_TYPE: Int
+  BUS_TYPE_not: Int
+  BUS_TYPE_in: [Int!]
+  BUS_TYPE_not_in: [Int!]
+  BUS_TYPE_lt: Int
+  BUS_TYPE_lte: Int
+  BUS_TYPE_gt: Int
+  BUS_TYPE_gte: Int
+  CAR_REG_NO: ID
+  CAR_REG_NO_not: ID
+  CAR_REG_NO_in: [ID!]
+  CAR_REG_NO_not_in: [ID!]
+  CAR_REG_NO_lt: ID
+  CAR_REG_NO_lte: ID
+  CAR_REG_NO_gt: ID
+  CAR_REG_NO_gte: ID
+  CAR_REG_NO_contains: ID
+  CAR_REG_NO_not_contains: ID
+  CAR_REG_NO_starts_with: ID
+  CAR_REG_NO_not_starts_with: ID
+  CAR_REG_NO_ends_with: ID
+  CAR_REG_NO_not_ends_with: ID
+  CHARACTER: Int
+  CHARACTER_not: Int
+  CHARACTER_in: [Int!]
+  CHARACTER_not_in: [Int!]
+  CHARACTER_lt: Int
+  CHARACTER_lte: Int
+  CHARACTER_gt: Int
+  CHARACTER_gte: Int
+  COMP_CD: Int
+  COMP_CD_not: Int
+  COMP_CD_in: [Int!]
+  COMP_CD_not_in: [Int!]
+  COMP_CD_lt: Int
+  COMP_CD_lte: Int
+  COMP_CD_gt: Int
+  COMP_CD_gte: Int
+  AND: [BusInfoWhereInput!]
+  OR: [BusInfoWhereInput!]
+  NOT: [BusInfoWhereInput!]
+}
+
+input BusInfoWhereUniqueInput {
+  CAR_REG_NO: ID
+}
+
+type BusStation {
+  BUS_NODE_ID: ID!
+  BUS_STOP_ID: Int!
+  BUSSTOP_NM: String!
+  BUSSTOP_ENG_NM: String!
+  GPS_LATI: Float!
+  GPS_LONG: Float!
+  BUSSTOP_SEQ: String
+  BUSSTOP_TP: String
+  ROAD_NM: String
+  ROAD_NM_ADDR: String
+  ROUTE_CD: Int
+  TOTAL_DIST: Int
+}
+
+type BusStationConnection {
+  pageInfo: PageInfo!
+  edges: [BusStationEdge]!
+  aggregate: AggregateBusStation!
+}
+
+input BusStationCreateInput {
+  BUS_NODE_ID: ID
+  BUS_STOP_ID: Int!
+  BUSSTOP_NM: String!
+  BUSSTOP_ENG_NM: String!
+  GPS_LATI: Float!
+  GPS_LONG: Float!
+  BUSSTOP_SEQ: String
+  BUSSTOP_TP: String
+  ROAD_NM: String
+  ROAD_NM_ADDR: String
+  ROUTE_CD: Int
+  TOTAL_DIST: Int
+}
+
+type BusStationEdge {
+  node: BusStation!
+  cursor: String!
+}
+
+enum BusStationOrderByInput {
+  BUS_NODE_ID_ASC
+  BUS_NODE_ID_DESC
+  BUS_STOP_ID_ASC
+  BUS_STOP_ID_DESC
+  BUSSTOP_NM_ASC
+  BUSSTOP_NM_DESC
+  BUSSTOP_ENG_NM_ASC
+  BUSSTOP_ENG_NM_DESC
+  GPS_LATI_ASC
+  GPS_LATI_DESC
+  GPS_LONG_ASC
+  GPS_LONG_DESC
+  BUSSTOP_SEQ_ASC
+  BUSSTOP_SEQ_DESC
+  BUSSTOP_TP_ASC
+  BUSSTOP_TP_DESC
+  ROAD_NM_ASC
+  ROAD_NM_DESC
+  ROAD_NM_ADDR_ASC
+  ROAD_NM_ADDR_DESC
+  ROUTE_CD_ASC
+  ROUTE_CD_DESC
+  TOTAL_DIST_ASC
+  TOTAL_DIST_DESC
+}
+
+type BusStationPreviousValues {
+  BUS_NODE_ID: ID!
+  BUS_STOP_ID: Int!
+  BUSSTOP_NM: String!
+  BUSSTOP_ENG_NM: String!
+  GPS_LATI: Float!
+  GPS_LONG: Float!
+  BUSSTOP_SEQ: String
+  BUSSTOP_TP: String
+  ROAD_NM: String
+  ROAD_NM_ADDR: String
+  ROUTE_CD: Int
+  TOTAL_DIST: Int
+}
+
+type BusStationSubscriptionPayload {
+  mutation: MutationType!
+  node: BusStation
+  updatedFields: [String!]
+  previousValues: BusStationPreviousValues
+}
+
+input BusStationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: BusStationWhereInput
+  AND: [BusStationSubscriptionWhereInput!]
+  OR: [BusStationSubscriptionWhereInput!]
+  NOT: [BusStationSubscriptionWhereInput!]
+}
+
+input BusStationUpdateInput {
+  BUS_STOP_ID: Int
+  BUSSTOP_NM: String
+  BUSSTOP_ENG_NM: String
+  GPS_LATI: Float
+  GPS_LONG: Float
+  BUSSTOP_SEQ: String
+  BUSSTOP_TP: String
+  ROAD_NM: String
+  ROAD_NM_ADDR: String
+  ROUTE_CD: Int
+  TOTAL_DIST: Int
+}
+
+input BusStationUpdateManyMutationInput {
+  BUS_STOP_ID: Int
+  BUSSTOP_NM: String
+  BUSSTOP_ENG_NM: String
+  GPS_LATI: Float
+  GPS_LONG: Float
+  BUSSTOP_SEQ: String
+  BUSSTOP_TP: String
+  ROAD_NM: String
+  ROAD_NM_ADDR: String
+  ROUTE_CD: Int
+  TOTAL_DIST: Int
+}
+
+input BusStationWhereInput {
+  BUS_NODE_ID: ID
+  BUS_NODE_ID_not: ID
+  BUS_NODE_ID_in: [ID!]
+  BUS_NODE_ID_not_in: [ID!]
+  BUS_NODE_ID_lt: ID
+  BUS_NODE_ID_lte: ID
+  BUS_NODE_ID_gt: ID
+  BUS_NODE_ID_gte: ID
+  BUS_NODE_ID_contains: ID
+  BUS_NODE_ID_not_contains: ID
+  BUS_NODE_ID_starts_with: ID
+  BUS_NODE_ID_not_starts_with: ID
+  BUS_NODE_ID_ends_with: ID
+  BUS_NODE_ID_not_ends_with: ID
+  BUS_STOP_ID: Int
+  BUS_STOP_ID_not: Int
+  BUS_STOP_ID_in: [Int!]
+  BUS_STOP_ID_not_in: [Int!]
+  BUS_STOP_ID_lt: Int
+  BUS_STOP_ID_lte: Int
+  BUS_STOP_ID_gt: Int
+  BUS_STOP_ID_gte: Int
+  BUSSTOP_NM: String
+  BUSSTOP_NM_not: String
+  BUSSTOP_NM_in: [String!]
+  BUSSTOP_NM_not_in: [String!]
+  BUSSTOP_NM_lt: String
+  BUSSTOP_NM_lte: String
+  BUSSTOP_NM_gt: String
+  BUSSTOP_NM_gte: String
+  BUSSTOP_NM_contains: String
+  BUSSTOP_NM_not_contains: String
+  BUSSTOP_NM_starts_with: String
+  BUSSTOP_NM_not_starts_with: String
+  BUSSTOP_NM_ends_with: String
+  BUSSTOP_NM_not_ends_with: String
+  BUSSTOP_ENG_NM: String
+  BUSSTOP_ENG_NM_not: String
+  BUSSTOP_ENG_NM_in: [String!]
+  BUSSTOP_ENG_NM_not_in: [String!]
+  BUSSTOP_ENG_NM_lt: String
+  BUSSTOP_ENG_NM_lte: String
+  BUSSTOP_ENG_NM_gt: String
+  BUSSTOP_ENG_NM_gte: String
+  BUSSTOP_ENG_NM_contains: String
+  BUSSTOP_ENG_NM_not_contains: String
+  BUSSTOP_ENG_NM_starts_with: String
+  BUSSTOP_ENG_NM_not_starts_with: String
+  BUSSTOP_ENG_NM_ends_with: String
+  BUSSTOP_ENG_NM_not_ends_with: String
+  GPS_LATI: Float
+  GPS_LATI_not: Float
+  GPS_LATI_in: [Float!]
+  GPS_LATI_not_in: [Float!]
+  GPS_LATI_lt: Float
+  GPS_LATI_lte: Float
+  GPS_LATI_gt: Float
+  GPS_LATI_gte: Float
+  GPS_LONG: Float
+  GPS_LONG_not: Float
+  GPS_LONG_in: [Float!]
+  GPS_LONG_not_in: [Float!]
+  GPS_LONG_lt: Float
+  GPS_LONG_lte: Float
+  GPS_LONG_gt: Float
+  GPS_LONG_gte: Float
+  BUSSTOP_SEQ: String
+  BUSSTOP_SEQ_not: String
+  BUSSTOP_SEQ_in: [String!]
+  BUSSTOP_SEQ_not_in: [String!]
+  BUSSTOP_SEQ_lt: String
+  BUSSTOP_SEQ_lte: String
+  BUSSTOP_SEQ_gt: String
+  BUSSTOP_SEQ_gte: String
+  BUSSTOP_SEQ_contains: String
+  BUSSTOP_SEQ_not_contains: String
+  BUSSTOP_SEQ_starts_with: String
+  BUSSTOP_SEQ_not_starts_with: String
+  BUSSTOP_SEQ_ends_with: String
+  BUSSTOP_SEQ_not_ends_with: String
+  BUSSTOP_TP: String
+  BUSSTOP_TP_not: String
+  BUSSTOP_TP_in: [String!]
+  BUSSTOP_TP_not_in: [String!]
+  BUSSTOP_TP_lt: String
+  BUSSTOP_TP_lte: String
+  BUSSTOP_TP_gt: String
+  BUSSTOP_TP_gte: String
+  BUSSTOP_TP_contains: String
+  BUSSTOP_TP_not_contains: String
+  BUSSTOP_TP_starts_with: String
+  BUSSTOP_TP_not_starts_with: String
+  BUSSTOP_TP_ends_with: String
+  BUSSTOP_TP_not_ends_with: String
+  ROAD_NM: String
+  ROAD_NM_not: String
+  ROAD_NM_in: [String!]
+  ROAD_NM_not_in: [String!]
+  ROAD_NM_lt: String
+  ROAD_NM_lte: String
+  ROAD_NM_gt: String
+  ROAD_NM_gte: String
+  ROAD_NM_contains: String
+  ROAD_NM_not_contains: String
+  ROAD_NM_starts_with: String
+  ROAD_NM_not_starts_with: String
+  ROAD_NM_ends_with: String
+  ROAD_NM_not_ends_with: String
+  ROAD_NM_ADDR: String
+  ROAD_NM_ADDR_not: String
+  ROAD_NM_ADDR_in: [String!]
+  ROAD_NM_ADDR_not_in: [String!]
+  ROAD_NM_ADDR_lt: String
+  ROAD_NM_ADDR_lte: String
+  ROAD_NM_ADDR_gt: String
+  ROAD_NM_ADDR_gte: String
+  ROAD_NM_ADDR_contains: String
+  ROAD_NM_ADDR_not_contains: String
+  ROAD_NM_ADDR_starts_with: String
+  ROAD_NM_ADDR_not_starts_with: String
+  ROAD_NM_ADDR_ends_with: String
+  ROAD_NM_ADDR_not_ends_with: String
+  ROUTE_CD: Int
+  ROUTE_CD_not: Int
+  ROUTE_CD_in: [Int!]
+  ROUTE_CD_not_in: [Int!]
+  ROUTE_CD_lt: Int
+  ROUTE_CD_lte: Int
+  ROUTE_CD_gt: Int
+  ROUTE_CD_gte: Int
+  TOTAL_DIST: Int
+  TOTAL_DIST_not: Int
+  TOTAL_DIST_in: [Int!]
+  TOTAL_DIST_not_in: [Int!]
+  TOTAL_DIST_lt: Int
+  TOTAL_DIST_lte: Int
+  TOTAL_DIST_gt: Int
+  TOTAL_DIST_gte: Int
+  AND: [BusStationWhereInput!]
+  OR: [BusStationWhereInput!]
+  NOT: [BusStationWhereInput!]
+}
+
+input BusStationWhereUniqueInput {
+  BUS_NODE_ID: ID
+}
+
 scalar Long
 
 type Mutation {
+  createBusInfo(data: BusInfoCreateInput!): BusInfo!
+  updateBusInfo(data: BusInfoUpdateInput!, where: BusInfoWhereUniqueInput!): BusInfo
+  updateManyBusInfoes(data: BusInfoUpdateManyMutationInput!, where: BusInfoWhereInput): BatchPayload!
+  upsertBusInfo(where: BusInfoWhereUniqueInput!, create: BusInfoCreateInput!, update: BusInfoUpdateInput!): BusInfo!
+  deleteBusInfo(where: BusInfoWhereUniqueInput!): BusInfo
+  deleteManyBusInfoes(where: BusInfoWhereInput): BatchPayload!
+  createBusStation(data: BusStationCreateInput!): BusStation!
+  updateBusStation(data: BusStationUpdateInput!, where: BusStationWhereUniqueInput!): BusStation
+  updateManyBusStations(data: BusStationUpdateManyMutationInput!, where: BusStationWhereInput): BatchPayload!
+  upsertBusStation(where: BusStationWhereUniqueInput!, create: BusStationCreateInput!, update: BusStationUpdateInput!): BusStation!
+  deleteBusStation(where: BusStationWhereUniqueInput!): BusStation
+  deleteManyBusStations(where: BusStationWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -40,6 +458,12 @@ type PageInfo {
 }
 
 type Query {
+  busInfo(where: BusInfoWhereUniqueInput!): BusInfo
+  busInfoes(where: BusInfoWhereInput, orderBy: BusInfoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [BusInfo]!
+  busInfoesConnection(where: BusInfoWhereInput, orderBy: BusInfoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BusInfoConnection!
+  busStation(where: BusStationWhereUniqueInput!): BusStation
+  busStations(where: BusStationWhereInput, orderBy: BusStationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [BusStation]!
+  busStationsConnection(where: BusStationWhereInput, orderBy: BusStationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BusStationConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -47,6 +471,8 @@ type Query {
 }
 
 type Subscription {
+  busInfo(where: BusInfoSubscriptionWhereInput): BusInfoSubscriptionPayload
+  busStation(where: BusStationSubscriptionWhereInput): BusStationSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
