@@ -23,4 +23,5 @@ type BusInfo{
   CAR_REG_NO: ID! @id
   CHARACTER: Int!
   COMP_CD: Int!
+  ROUTE_CD: Int!
 }
