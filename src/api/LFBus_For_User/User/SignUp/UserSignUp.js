@@ -22,7 +22,6 @@ export default {
           needHelp,
           equipment,
           memo,
-          createdAt: new Date(),
         });
 
         return true;
