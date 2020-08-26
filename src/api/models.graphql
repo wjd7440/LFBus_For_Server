@@ -1,6 +1,10 @@
 type User {
   id: ID!
-  name: String!
+  userId: String!
+  password: String!
+  needHelp: Boolean!
+  equipment: String!
+  memo: String
 }
 
 type BusStation {
