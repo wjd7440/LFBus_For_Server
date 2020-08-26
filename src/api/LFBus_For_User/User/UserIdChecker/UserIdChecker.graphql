@@ -1,0 +1,5 @@
+# 아이디 존재 유무 체커
+
+type Mutation {
+  WalletAuthUserIdChecker(userId: String!): Boolean!
+}

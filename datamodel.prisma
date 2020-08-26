@@ -5,6 +5,7 @@ type User {
   needHelp: Boolean!
   equipment: String!
   memo: String
+  createdAt: DateTime! @createdAt
 }
 
 type BusStation {
