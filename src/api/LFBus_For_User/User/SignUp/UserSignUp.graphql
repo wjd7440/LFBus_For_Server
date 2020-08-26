@@ -5,6 +5,6 @@ type Mutation {
     needHelp: Boolean!
     equipment: String!
     memo: String
-    createdAt: String!
+    createdAt: String
   ): Boolean!
 }
