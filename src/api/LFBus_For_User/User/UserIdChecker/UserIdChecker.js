@@ -2,7 +2,7 @@ import { prisma } from "../../../../../generated/prisma-client";
 
 export default {
   Mutation: {
-    WalletAuthUserIdChecker: async (_, args) => {
+    UserIdChecker: async (_, args) => {
       const { userId } = args;
       const exists = await prisma.$exists.user({ userId });
 
@@ -11,6 +11,6 @@ export default {
       } else {
         return false;
       }
-    }
-  }
+    },
+  },
 };
