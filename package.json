@@ -13,7 +13,6 @@
     "express": "^4.17.1",
     "graphql-tools": "^6.0.13",
     "graphql-yoga": "^1.18.3",
-    "jsonwebtoken": "^8.5.1",
     "merge-graphql-schemas": "^1.7.8",
     "morgan": "^1.10.0",
     "mysql2": "2.1.0",
@@ -33,3 +32,4 @@
     "dev": "nodemon --exec babel-node src/server.js"
   }
 }
+

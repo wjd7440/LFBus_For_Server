@@ -24,6 +24,7 @@ type BusInfo {
   CAR_REG_NO: ID!
   CHARACTER: Int!
   COMP_CD: Int!
+  ROUTE_CD: Int!
 }
 
 type BusInfoConnection {
@@ -37,6 +38,7 @@ input BusInfoCreateInput {
   CAR_REG_NO: ID
   CHARACTER: Int!
   COMP_CD: Int!
+  ROUTE_CD: Int!
 }
 
 type BusInfoEdge {
@@ -53,6 +55,8 @@ enum BusInfoOrderByInput {
   CHARACTER_DESC
   COMP_CD_ASC
   COMP_CD_DESC
+  ROUTE_CD_ASC
+  ROUTE_CD_DESC
 }
 
 type BusInfoPreviousValues {
@@ -60,6 +64,7 @@ type BusInfoPreviousValues {
   CAR_REG_NO: ID!
   CHARACTER: Int!
   COMP_CD: Int!
+  ROUTE_CD: Int!
 }
 
 type BusInfoSubscriptionPayload {
@@ -84,12 +89,14 @@ input BusInfoUpdateInput {
   BUS_TYPE: Int
   CHARACTER: Int
   COMP_CD: Int
+  ROUTE_CD: Int
 }
 
 input BusInfoUpdateManyMutationInput {
   BUS_TYPE: Int
   CHARACTER: Int
   COMP_CD: Int
+  ROUTE_CD: Int
 }
 
 input BusInfoWhereInput {
@@ -131,6 +138,14 @@ input BusInfoWhereInput {
   COMP_CD_lte: Int
   COMP_CD_gt: Int
   COMP_CD_gte: Int
+  ROUTE_CD: Int
+  ROUTE_CD_not: Int
+  ROUTE_CD_in: [Int!]
+  ROUTE_CD_not_in: [Int!]
+  ROUTE_CD_lt: Int
+  ROUTE_CD_lte: Int
+  ROUTE_CD_gt: Int
+  ROUTE_CD_gte: Int
   AND: [BusInfoWhereInput!]
   OR: [BusInfoWhereInput!]
   NOT: [BusInfoWhereInput!]
@@ -478,7 +493,11 @@ type Subscription {
 
 type User {
   id: ID!
-  name: String!
+  userId: String!
+  password: String!
+  needHelp: Boolean!
+  equipment: String!
+  memo: String
 }
 
 type UserConnection {
@@ -489,7 +508,11 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
-  name: String!
+  userId: String!
+  password: String!
+  needHelp: Boolean!
+  equipment: String!
+  memo: String
 }
 
 type UserEdge {
@@ -500,13 +523,25 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
+  userId_ASC
+  userId_DESC
+  password_ASC
+  password_DESC
+  needHelp_ASC
+  needHelp_DESC
+  equipment_ASC
+  equipment_DESC
+  memo_ASC
+  memo_DESC
 }
 
 type UserPreviousValues {
   id: ID!
-  name: String!
+  userId: String!
+  password: String!
+  needHelp: Boolean!
+  equipment: String!
+  memo: String
 }
 
 type UserSubscriptionPayload {
@@ -528,11 +563,19 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
-  name: String
+  userId: String
+  password: String
+  needHelp: Boolean
+  equipment: String
+  memo: String
 }
 
 input UserUpdateManyMutationInput {
-  name: String
+  userId: String
+  password: String
+  needHelp: Boolean
+  equipment: String
+  memo: String
 }
 
 input UserWhereInput {
@@ -550,20 +593,64 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  needHelp: Boolean
+  needHelp_not: Boolean
+  equipment: String
+  equipment_not: String
+  equipment_in: [String!]
+  equipment_not_in: [String!]
+  equipment_lt: String
+  equipment_lte: String
+  equipment_gt: String
+  equipment_gte: String
+  equipment_contains: String
+  equipment_not_contains: String
+  equipment_starts_with: String
+  equipment_not_starts_with: String
+  equipment_ends_with: String
+  equipment_not_ends_with: String
+  memo: String
+  memo_not: String
+  memo_in: [String!]
+  memo_not_in: [String!]
+  memo_lt: String
+  memo_lte: String
+  memo_gt: String
+  memo_gte: String
+  memo_contains: String
+  memo_not_contains: String
+  memo_starts_with: String
+  memo_not_starts_with: String
+  memo_ends_with: String
+  memo_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
@@ -571,6 +658,7 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  userId: String
 }
 `
       }

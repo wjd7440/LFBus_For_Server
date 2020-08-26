@@ -187,7 +187,9 @@ export type BusInfoOrderByInput =
   | "CHARACTER_ASC"
   | "CHARACTER_DESC"
   | "COMP_CD_ASC"
-  | "COMP_CD_DESC";
+  | "COMP_CD_DESC"
+  | "ROUTE_CD_ASC"
+  | "ROUTE_CD_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
@@ -217,7 +219,19 @@ export type BusStationOrderByInput =
   | "TOTAL_DIST_ASC"
   | "TOTAL_DIST_DESC";
 
-export type UserOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
+export type UserOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "userId_ASC"
+  | "userId_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "needHelp_ASC"
+  | "needHelp_DESC"
+  | "equipment_ASC"
+  | "equipment_DESC"
+  | "memo_ASC"
+  | "memo_DESC";
 
 export type BusStationWhereUniqueInput = AtLeastOne<{
   BUS_NODE_ID: Maybe<ID_Input>;
@@ -427,6 +441,14 @@ export interface BusInfoWhereInput {
   COMP_CD_lte?: Maybe<Int>;
   COMP_CD_gt?: Maybe<Int>;
   COMP_CD_gte?: Maybe<Int>;
+  ROUTE_CD?: Maybe<Int>;
+  ROUTE_CD_not?: Maybe<Int>;
+  ROUTE_CD_in?: Maybe<Int[] | Int>;
+  ROUTE_CD_not_in?: Maybe<Int[] | Int>;
+  ROUTE_CD_lt?: Maybe<Int>;
+  ROUTE_CD_lte?: Maybe<Int>;
+  ROUTE_CD_gt?: Maybe<Int>;
+  ROUTE_CD_gte?: Maybe<Int>;
   AND?: Maybe<BusInfoWhereInput[] | BusInfoWhereInput>;
   OR?: Maybe<BusInfoWhereInput[] | BusInfoWhereInput>;
   NOT?: Maybe<BusInfoWhereInput[] | BusInfoWhereInput>;
@@ -436,21 +458,31 @@ export interface BusInfoUpdateManyMutationInput {
   BUS_TYPE?: Maybe<Int>;
   CHARACTER?: Maybe<Int>;
   COMP_CD?: Maybe<Int>;
+  ROUTE_CD?: Maybe<Int>;
 }
 
 export interface UserUpdateManyMutationInput {
-  name?: Maybe<String>;
+  userId?: Maybe<String>;
+  password?: Maybe<String>;
+  needHelp?: Maybe<Boolean>;
+  equipment?: Maybe<String>;
+  memo?: Maybe<String>;
 }
 
 export interface BusInfoUpdateInput {
   BUS_TYPE?: Maybe<Int>;
   CHARACTER?: Maybe<Int>;
   COMP_CD?: Maybe<Int>;
+  ROUTE_CD?: Maybe<Int>;
 }
 
 export interface UserCreateInput {
   id?: Maybe<ID_Input>;
-  name: String;
+  userId: String;
+  password: String;
+  needHelp: Boolean;
+  equipment: String;
+  memo?: Maybe<String>;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -479,20 +511,64 @@ export interface UserWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
+  userId?: Maybe<String>;
+  userId_not?: Maybe<String>;
+  userId_in?: Maybe<String[] | String>;
+  userId_not_in?: Maybe<String[] | String>;
+  userId_lt?: Maybe<String>;
+  userId_lte?: Maybe<String>;
+  userId_gt?: Maybe<String>;
+  userId_gte?: Maybe<String>;
+  userId_contains?: Maybe<String>;
+  userId_not_contains?: Maybe<String>;
+  userId_starts_with?: Maybe<String>;
+  userId_not_starts_with?: Maybe<String>;
+  userId_ends_with?: Maybe<String>;
+  userId_not_ends_with?: Maybe<String>;
+  password?: Maybe<String>;
+  password_not?: Maybe<String>;
+  password_in?: Maybe<String[] | String>;
+  password_not_in?: Maybe<String[] | String>;
+  password_lt?: Maybe<String>;
+  password_lte?: Maybe<String>;
+  password_gt?: Maybe<String>;
+  password_gte?: Maybe<String>;
+  password_contains?: Maybe<String>;
+  password_not_contains?: Maybe<String>;
+  password_starts_with?: Maybe<String>;
+  password_not_starts_with?: Maybe<String>;
+  password_ends_with?: Maybe<String>;
+  password_not_ends_with?: Maybe<String>;
+  needHelp?: Maybe<Boolean>;
+  needHelp_not?: Maybe<Boolean>;
+  equipment?: Maybe<String>;
+  equipment_not?: Maybe<String>;
+  equipment_in?: Maybe<String[] | String>;
+  equipment_not_in?: Maybe<String[] | String>;
+  equipment_lt?: Maybe<String>;
+  equipment_lte?: Maybe<String>;
+  equipment_gt?: Maybe<String>;
+  equipment_gte?: Maybe<String>;
+  equipment_contains?: Maybe<String>;
+  equipment_not_contains?: Maybe<String>;
+  equipment_starts_with?: Maybe<String>;
+  equipment_not_starts_with?: Maybe<String>;
+  equipment_ends_with?: Maybe<String>;
+  equipment_not_ends_with?: Maybe<String>;
+  memo?: Maybe<String>;
+  memo_not?: Maybe<String>;
+  memo_in?: Maybe<String[] | String>;
+  memo_not_in?: Maybe<String[] | String>;
+  memo_lt?: Maybe<String>;
+  memo_lte?: Maybe<String>;
+  memo_gt?: Maybe<String>;
+  memo_gte?: Maybe<String>;
+  memo_contains?: Maybe<String>;
+  memo_not_contains?: Maybe<String>;
+  memo_starts_with?: Maybe<String>;
+  memo_not_starts_with?: Maybe<String>;
+  memo_ends_with?: Maybe<String>;
+  memo_not_ends_with?: Maybe<String>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
@@ -500,6 +576,7 @@ export interface UserWhereInput {
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  userId?: Maybe<String>;
 }>;
 
 export interface BusInfoCreateInput {
@@ -507,6 +584,7 @@ export interface BusInfoCreateInput {
   CAR_REG_NO?: Maybe<ID_Input>;
   CHARACTER: Int;
   COMP_CD: Int;
+  ROUTE_CD: Int;
 }
 
 export interface BusStationUpdateInput {
@@ -538,7 +616,11 @@ export interface BusStationUpdateManyMutationInput {
 }
 
 export interface UserUpdateInput {
-  name?: Maybe<String>;
+  userId?: Maybe<String>;
+  password?: Maybe<String>;
+  needHelp?: Maybe<Boolean>;
+  equipment?: Maybe<String>;
+  memo?: Maybe<String>;
 }
 
 export interface BusInfoSubscriptionWhereInput {
@@ -611,21 +693,33 @@ export interface BusInfoEdgeSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
-  name: String;
+  userId: String;
+  password: String;
+  needHelp: Boolean;
+  equipment: String;
+  memo?: String;
 }
 
 export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  userId: () => Promise<String>;
+  password: () => Promise<String>;
+  needHelp: () => Promise<Boolean>;
+  equipment: () => Promise<String>;
+  memo: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
+  userId: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  needHelp: () => Promise<AsyncIterator<Boolean>>;
+  equipment: () => Promise<AsyncIterator<String>>;
+  memo: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateBusInfo {
@@ -704,26 +798,42 @@ export interface AggregateUserSubscription
 
 export interface User {
   id: ID_Output;
-  name: String;
+  userId: String;
+  password: String;
+  needHelp: Boolean;
+  equipment: String;
+  memo?: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  userId: () => Promise<String>;
+  password: () => Promise<String>;
+  needHelp: () => Promise<Boolean>;
+  equipment: () => Promise<String>;
+  memo: () => Promise<String>;
 }
 
 export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
+  userId: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  needHelp: () => Promise<AsyncIterator<Boolean>>;
+  equipment: () => Promise<AsyncIterator<String>>;
+  memo: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserNullablePromise
   extends Promise<User | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  userId: () => Promise<String>;
+  password: () => Promise<String>;
+  needHelp: () => Promise<Boolean>;
+  equipment: () => Promise<String>;
+  memo: () => Promise<String>;
 }
 
 export interface BusStationEdge {
@@ -789,6 +899,7 @@ export interface BusInfo {
   CAR_REG_NO: ID_Output;
   CHARACTER: Int;
   COMP_CD: Int;
+  ROUTE_CD: Int;
 }
 
 export interface BusInfoPromise extends Promise<BusInfo>, Fragmentable {
@@ -796,6 +907,7 @@ export interface BusInfoPromise extends Promise<BusInfo>, Fragmentable {
   CAR_REG_NO: () => Promise<ID_Output>;
   CHARACTER: () => Promise<Int>;
   COMP_CD: () => Promise<Int>;
+  ROUTE_CD: () => Promise<Int>;
 }
 
 export interface BusInfoSubscription
@@ -805,6 +917,7 @@ export interface BusInfoSubscription
   CAR_REG_NO: () => Promise<AsyncIterator<ID_Output>>;
   CHARACTER: () => Promise<AsyncIterator<Int>>;
   COMP_CD: () => Promise<AsyncIterator<Int>>;
+  ROUTE_CD: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface BusInfoNullablePromise
@@ -814,6 +927,7 @@ export interface BusInfoNullablePromise
   CAR_REG_NO: () => Promise<ID_Output>;
   CHARACTER: () => Promise<Int>;
   COMP_CD: () => Promise<Int>;
+  ROUTE_CD: () => Promise<Int>;
 }
 
 export interface BusInfoPreviousValues {
@@ -821,6 +935,7 @@ export interface BusInfoPreviousValues {
   CAR_REG_NO: ID_Output;
   CHARACTER: Int;
   COMP_CD: Int;
+  ROUTE_CD: Int;
 }
 
 export interface BusInfoPreviousValuesPromise
@@ -830,6 +945,7 @@ export interface BusInfoPreviousValuesPromise
   CAR_REG_NO: () => Promise<ID_Output>;
   CHARACTER: () => Promise<Int>;
   COMP_CD: () => Promise<Int>;
+  ROUTE_CD: () => Promise<Int>;
 }
 
 export interface BusInfoPreviousValuesSubscription
@@ -839,6 +955,7 @@ export interface BusInfoPreviousValuesSubscription
   CAR_REG_NO: () => Promise<AsyncIterator<ID_Output>>;
   CHARACTER: () => Promise<AsyncIterator<Int>>;
   COMP_CD: () => Promise<AsyncIterator<Int>>;
+  ROUTE_CD: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface BusInfoSubscriptionPayload {
