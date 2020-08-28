@@ -2,7 +2,7 @@ type Mutation {
   UserSignUp(
     userId: String!
     password: String!
-    needHelp: Boolean!
+    needHelp: String
     equipment: String!
     memo: String
     createdAt: String

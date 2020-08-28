@@ -2,7 +2,7 @@ type User {
   id: ID! @id
   userId: String! @unique
   password: String!
-  needHelp: Boolean!
+  needHelp: String
   equipment: String!
   memo: String
   createdAt: DateTime @createdAt

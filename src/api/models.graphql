@@ -2,7 +2,7 @@ type User {
   id: ID!
   userId: String!
   password: String!
-  needHelp: Boolean!
+  needHelp: String
   equipment: String!
   memo: String
   createdAt: String
