@@ -19,6 +19,7 @@ export default {
         await prisma.createUser({
           userId,
           password: securePassword,
+          authSecret,
           needHelp,
           equipment,
           memo,
