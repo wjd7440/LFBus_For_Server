@@ -1,0 +1,9 @@
+# 디바이스 토큰 변경
+
+type Mutation {
+  UserTokenUpdate(
+    userId: String!
+    password: String!
+    deviceToken: String!
+  ): Boolean!
+}

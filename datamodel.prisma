@@ -6,6 +6,7 @@ type User {
   needHelp: String
   equipment: String!
   memo: String
+  deviceToken: String
   createdAt: DateTime @createdAt
 }
 
