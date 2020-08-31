@@ -13,7 +13,7 @@ export default {
       }
 
       const user = await prisma.user({ userId });
-      const securePassword = sha256(password);
+      const securePassword = sha256(password + user.authSecret);
 
       if (user.password === securePassword) {
         return generateToken(user.id);
