@@ -1,6 +1,7 @@
 type User {
   id: ID!
   userId: String!
+  authSecret: String!
   password: String!
   needHelp: String
   equipment: String!
