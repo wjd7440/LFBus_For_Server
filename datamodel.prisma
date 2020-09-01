@@ -32,3 +32,14 @@ type BusInfo{
   COMP_CD: Int!
   ROUTE_CD: Int!
 }
+
+type Reservation{
+  id: ID! @id
+  CAR_REG_NO: String!
+  userId: String!
+  BUS_NODE_ID: Int!
+  departureStation: String!
+  arrivalStation: String!
+  equipment: String
+  memo: String
+}
