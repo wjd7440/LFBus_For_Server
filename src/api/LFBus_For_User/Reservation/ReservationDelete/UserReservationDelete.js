@@ -2,11 +2,7 @@ import { prisma } from "../../../../../generated/prisma-client";
 
 export default {
   Mutation: {
-    UserReservationDelete: async (
-      _,
-      args,
-      { request, isUserAuthenticated }
-    ) => {
+    UserReservationDelete: async (_, { request, isUserAuthenticated }) => {
       isUserAuthenticated(request);
       const { account } = request;
 
