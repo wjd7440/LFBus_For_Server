@@ -16,12 +16,13 @@ export default {
       try {
         await prisma.createReservation({
           CAR_REG_NO,
-          userId: { connect: { id: account.id } },
+          user: { connect: { id: account.id } },
           BUS_NODE_ID,
           departureStation,
           arrivalStation,
           equipment,
           memo,
+          status: "S",
         });
 
         return true;
