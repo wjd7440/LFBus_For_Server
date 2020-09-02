@@ -6,9 +6,9 @@ export default {
       isUserAuthenticated(request);
       const { orderBy, skip, after, before, first, last } = args;
       const { account } = request;
-
+      console.log(account);
       let where = {
-        userId: { id: account.id },
+        userId: { id: account.userId },
       };
 
       const reservations = await prisma.reservations({
