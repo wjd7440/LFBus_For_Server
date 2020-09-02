@@ -1,0 +1,7 @@
+type Mutation {
+  UserReservationEdit(
+    departureStation: String!
+    equipment: String
+    memo: String
+  ): Boolean!
+}
