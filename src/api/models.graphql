@@ -37,7 +37,7 @@ type BusInfo {
 type Reservation {
   id: ID!
   CAR_REG_NO: String!
-  userId: String!
+  user: User!
   BUS_NODE_ID: Int!
   departureStation: String!
   arrivalStation: String!

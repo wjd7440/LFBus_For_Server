@@ -8,7 +8,7 @@ export default {
       const { account } = request;
       console.log(account);
       let where = {
-        userId: { id: account.id },
+        user: { id: account.id },
       };
 
       const reservations = await prisma.reservations({
