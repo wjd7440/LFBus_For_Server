@@ -1,10 +1,10 @@
-type Inquiries {
-  inquiries: [Inquiry!]!
+type Reservations {
+  Reservations: [Reservation!]!
   count: Int
 }
 
 type Query {
-  WalletInquiryList(
+  UserReservationList(
     keyword: String
     orderBy: String
     skip: Int
@@ -12,5 +12,5 @@ type Query {
     before: String
     first: Int
     last: Int
-  ): Inquiries!
+  ): Reservations!
 }
