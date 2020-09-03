@@ -8,7 +8,7 @@ export default {
       const { account } = request;
       console.log(account);
       let where = {
-        user: account.id,
+        user: { id: account.id },
         status: "S",
       };
 
