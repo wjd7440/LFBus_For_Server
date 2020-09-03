@@ -1,5 +1,5 @@
 type Reservations {
-  Reservations: [Reservation!]!
+  reservations: [Reservation!]!
   count: Int
 }
 
