@@ -1,6 +1,7 @@
 type Mutation {
   UserReservationWrite(
     CAR_REG_NO: String!
+    ROUTE_NO: String!
     BUS_NODE_ID: Int!
     departureStation: String!
     arrivalStation: String!

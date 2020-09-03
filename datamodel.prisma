@@ -37,6 +37,7 @@ type Reservation{
   id: ID! @id
   status: String
   CAR_REG_NO: String!
+  ROUTE_NO: String!
   user: User! @relation(name: "ReservationOfUser")
   BUS_NODE_ID: Int!
   departureStation: String!

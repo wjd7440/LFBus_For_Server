@@ -7,6 +7,7 @@ export default {
       const { account } = request;
       const {
         CAR_REG_NO,
+        ROUTE_NO,
         BUS_NODE_ID,
         departureStation,
         arrivalStation,
@@ -17,6 +18,7 @@ export default {
         await prisma.createReservation({
           status: "S",
           CAR_REG_NO,
+          ROUTE_NO,
           user: { connect: { id: account.id } },
           BUS_NODE_ID,
           departureStation,
