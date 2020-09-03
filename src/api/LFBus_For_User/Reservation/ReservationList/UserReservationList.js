@@ -9,6 +9,7 @@ export default {
       console.log(account);
       let where = {
         user: { id: account.id },
+        status: "S",
       };
 
       const reservations = await prisma.reservations({
