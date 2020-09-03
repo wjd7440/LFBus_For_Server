@@ -15,6 +15,7 @@ export default {
       } = args;
       try {
         await prisma.createReservation({
+          status: "S",
           CAR_REG_NO,
           user: { connect: { id: account.id } },
           BUS_NODE_ID,
@@ -22,7 +23,6 @@ export default {
           arrivalStation,
           equipment,
           memo,
-          status: "S",
         });
 
         return true;
