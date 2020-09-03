@@ -35,7 +35,7 @@ type BusInfo{
 
 type Reservation{
   id: ID! @id
-  status: String!
+  status: String
   CAR_REG_NO: String!
   user: User! @relation(name: "ReservationOfUser")
   BUS_NODE_ID: Int!

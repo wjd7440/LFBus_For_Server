@@ -1,6 +1,6 @@
 type Mutation {
   UserReservationWrite(
-    status: String!
+    status: String
     CAR_REG_NO: String!
     user: String!
     BUS_NODE_ID: Int!
