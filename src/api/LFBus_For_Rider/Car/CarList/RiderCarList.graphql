@@ -1,8 +1,0 @@
-type Cars {
-  cars: [Car!]!
-  count: Int
-}
-
-type Query {
-  RiderCarList: Cars!
-}

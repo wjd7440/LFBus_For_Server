@@ -2,7 +2,7 @@ import { prisma } from "../../../../../generated/prisma-client";
 
 export default {
   Query: {
-    RiderCarList: async (_, args) => {
+    RiderBusInfoList: async (_, args) => {
       // const { keyword, orderBy, skip, after, before, first, last } = args;
 
       // let where = null;
@@ -11,11 +11,11 @@ export default {
       //     where = { ...where, question_contains: keyword };
       //   }
 
-      const cars = await prisma.cars();
+      const busInfoes = await prisma.busInfoes();
 
-      const count = await prisma.carsConnection().aggregate().count();
+      const count = await prisma.busInfoesConnection().aggregate().count();
 
-      return { cars, count };
+      return { busInfoes, count };
     },
   },
 };

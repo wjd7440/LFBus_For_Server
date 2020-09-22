@@ -1,0 +1,8 @@
+type BusInfoes {
+  busInfoes: [BusInfo!]!
+  count: Int
+}
+
+type Query {
+  RiderBusInfoList: BusInfoes!
+}
