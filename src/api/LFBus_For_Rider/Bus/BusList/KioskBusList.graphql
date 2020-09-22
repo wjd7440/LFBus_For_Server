@@ -1,0 +1,8 @@
+type Buses {
+  buses: [Bus!]!
+  count: Int
+}
+
+type Query {
+  KioskBusList: Buses!
+}
