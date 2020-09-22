@@ -2,7 +2,7 @@ import { prisma } from "../../../../../generated/prisma-client";
 
 export default {
   Query: {
-    KioskBusList: async (_, args) => {
+    RiderBusList: async (_, args) => {
       // const { keyword, orderBy, skip, after, before, first, last } = args;
 
       // let where = null;

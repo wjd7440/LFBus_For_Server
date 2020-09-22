@@ -4,5 +4,5 @@ type Buses {
 }
 
 type Query {
-  KioskBusList: Buses!
+  RiderBusList: Buses!
 }
