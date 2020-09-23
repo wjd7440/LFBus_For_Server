@@ -5,6 +5,7 @@ type Reservations {
 
 type Query {
   RiderReservationList(
+    CAR_REG_NO: String!
     keyword: String
     orderBy: String
     skip: Int
