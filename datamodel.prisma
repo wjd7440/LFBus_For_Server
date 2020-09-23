@@ -31,7 +31,7 @@ type BusInfo{
   CHARACTER: Int!
   COMP_CD: Int!
   ROUTE_CD: Int!
-  SEAT1: String @default(value: "Y")
+  SEAT1: String @default(value: "N")
   SEAT2: String @default(value: "N")
 }
 
