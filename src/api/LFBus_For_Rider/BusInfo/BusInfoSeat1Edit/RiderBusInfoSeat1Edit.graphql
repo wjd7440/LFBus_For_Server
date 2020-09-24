@@ -1,3 +1,3 @@
 type Mutation {
-  RiderBusInfoSeat1Edit(SEAT1: Boolean): Boolean!
+  RiderBusInfoSeat1Edit(SEAT1: Boolean, CAR_REG_NO: String!): Boolean!
 }
