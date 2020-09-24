@@ -6,7 +6,7 @@ export default {
       const { SEAT2, CAR_REG_NO } = args;
 
       try {
-        await prisma.updateUser({
+        await prisma.updateBusInfo({
           where: { CAR_REG_NO: CAR_REG_NO },
           data: {
             SEAT2,

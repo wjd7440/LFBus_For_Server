@@ -4,9 +4,9 @@ export default {
   Mutation: {
     RiderBusInfoSeat1Edit: async (_, args) => {
       const { SEAT1, CAR_REG_NO } = args;
-      console.log(SEAT1, CAR_REG_NO);
+
       try {
-        await prisma.updateUser({
+        await prisma.updateBusInfo({
           where: { CAR_REG_NO: CAR_REG_NO },
           data: {
             SEAT1,
