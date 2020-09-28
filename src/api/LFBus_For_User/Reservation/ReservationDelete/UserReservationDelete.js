@@ -4,7 +4,7 @@ export default {
   Mutation: {
     UserReservationDelete: async (_, args) => {
       const { id } = args;
-
+      console.log(id);
       try {
         await prisma.updateReservation({
           where: { id: id },
