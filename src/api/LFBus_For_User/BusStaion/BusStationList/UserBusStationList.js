@@ -17,6 +17,7 @@ export default {
 
       results.map((obejct, index) => {
         const busStation = {
+          BUS_STOP_ID: obejct.BUS_STOP_ID,
           BUS_NODE_ID: obejct.BUS_NODE_ID,
           BUSSTOP_NM: obejct.BUSSTOP_NM,
           DISTANCE: obejct.DISTANCE,
