@@ -6,7 +6,7 @@ const pool = mysql.createPool(dbConfig);
 export default {
   Query: {
     UserBusStationList: async (_, args) => {
-      const { latitude, longitude } = args;
+      const { latitude, longitude, orderBy } = args;
 
       let busStations = [];
       const connection = await pool.getConnection(async (conn) => conn);
@@ -22,6 +22,7 @@ export default {
           DISTANCE: obejct.DISTANCE,
           GPS_LATI: obejct.GPS_LATI,
           GPS_LONG: obejct.GPS_LONG,
+          orderBy,
         };
         busStations.push(busStation);
       });
