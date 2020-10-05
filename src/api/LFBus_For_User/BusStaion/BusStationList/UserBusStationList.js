@@ -22,7 +22,7 @@ export default {
           DISTANCE: obejct.DISTANCE,
           GPS_LATI: obejct.GPS_LATI,
           GPS_LONG: obejct.GPS_LONG,
-          orderBy,
+          orderBy: orderBy,
         };
         busStations.push(busStation);
       });
