@@ -1,0 +1,6 @@
+type Mutation {
+  RiderBusInfoDeviceTokenEdit(
+    deviceToken: String
+    CAR_REG_NO: String!
+  ): Boolean!
+}
