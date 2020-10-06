@@ -33,6 +33,7 @@ type BusInfo{
   ROUTE_CD: Int!
   SEAT1: Boolean @default(value: false)
   SEAT2: Boolean @default(value: false)
+  deviceToken: String
 }
 
 type Reservation{

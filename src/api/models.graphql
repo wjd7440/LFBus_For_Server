@@ -34,6 +34,7 @@ type BusInfo {
   ROUTE_CD: Int!
   SEAT1: Boolean
   SEAT2: Boolean
+  deviceToken: String
 }
 
 type Reservation {
