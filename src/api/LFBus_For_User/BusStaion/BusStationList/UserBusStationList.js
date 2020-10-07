@@ -27,7 +27,7 @@ export default {
         };
         busStations.push(busStation);
       });
-      console.log(busStations);
+
       const count = busStations.length;
 
       return { busStations, count };

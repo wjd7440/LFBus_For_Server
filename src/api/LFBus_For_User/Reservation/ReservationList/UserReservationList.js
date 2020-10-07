@@ -7,8 +7,6 @@ export default {
       const { orderBy, skip, after, before, first, last } = args;
       const { account } = request;
 
-      console.log(account);
-
       let where = {
         user: { id: account.id },
         status: "S",
