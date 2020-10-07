@@ -1,4 +1,5 @@
 import { prisma } from "../../../../../generated/prisma-client";
+import { expoPush } from "../../../../utils/fcm";
 
 export default {
   Mutation: {
@@ -13,7 +14,9 @@ export default {
         arrivalStation,
         equipment,
         memo,
+        deviceToken,
       } = args;
+      console.log(args);
       try {
         await prisma.createReservation({
           status: "S",
@@ -26,6 +29,18 @@ export default {
           equipment,
           memo,
         });
+
+        if (deviceToken) {
+          expoPush({
+            deviceToken: deviceToken,
+            data: {},
+            notification: {
+              title: "승차예약",
+              body: `승차예약이 있습니다.`,
+            },
+          });
+          console.log("가라푸시");
+        }
 
         return true;
       } catch (e) {

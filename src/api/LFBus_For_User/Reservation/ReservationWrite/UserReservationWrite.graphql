@@ -7,5 +7,6 @@ type Mutation {
     arrivalStation: String!
     equipment: String
     memo: String
+    deviceToken: String
   ): Boolean!
 }
