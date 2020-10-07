@@ -1,8 +1,9 @@
-export const expoPush = async ({ deviceToken, notification }) => {
+export const expoPush = async ({ deviceToken, data, notification }) => {
   const message = {
     to: deviceToken,
     sound: "default",
     ...notification,
+    data: data,
   };
 
   await fetch("https://exp.host/--/api/v2/push/send", {
