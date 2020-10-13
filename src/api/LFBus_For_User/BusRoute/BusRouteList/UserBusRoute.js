@@ -3,9 +3,14 @@ import { prisma } from "../../../../../generated/prisma-client";
 export default {
   Query: {
     UserBusRouteList: async (_, args) => {
-      const { orderBy, skip, after, before, first, last } = args;
+      const { ROUTE_TP ,orderBy, skip, after, before, first, last } = args;
       
+      let where = {
+        ROUTE_TP: ROUTE_TP,
+      };
+
       const busRoutes = await prisma.busRoutes({
+        where,
         orderBy,
         skip, //offset
         after,
@@ -15,7 +20,7 @@ export default {
       });
 
       const count = await prisma
-        .busRoutesConnection()
+        .busRoutesConnection({ where, })
         .aggregate()
         .count();
 

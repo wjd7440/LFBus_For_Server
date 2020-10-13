@@ -5,6 +5,7 @@ type BusRoutes {
 
 type Query {
   UserBusRouteList(
+    ROUTE_TP: Int
     keyword: String
     orderBy: String
     skip: Int
