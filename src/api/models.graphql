@@ -67,7 +67,7 @@ type BusRoute {
   ROUTE_CD: Int
   ROUTE_NO: Int
   ROUTE_TP: Int
-  RUN_DIST_HALF: ID!
+  RUN_DIST_HALF: Float!
   RUN_TM: Int
   START_NODE_ID: Int
   START_STOP_ID: Int
