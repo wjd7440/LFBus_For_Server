@@ -1,3 +1,16 @@
+type BusRoute {
+  busRoutes: [BusRoute!]!
+  count: Int
+}
+
 type Query {
-  UserBusRoute: BusRoute!
+  UserBusRouteList(
+    keyword: String
+    orderBy: String
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): BusRoutes!
 }
