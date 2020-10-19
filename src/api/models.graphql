@@ -2,13 +2,10 @@ type User {
   id: ID!
   userId: String!
   sex: String!
-  gu: String!
-  dong: String!
   authSecret: String!
   password: String!
   needHelp: String
   equipment: String!
-  memo: String
   deviceToken: String
   createdAt: String
 }
