@@ -2,9 +2,9 @@ type Mutation {
   UserSignUp(
     userId: String!
     password: String!
+    sex: String!
     needHelp: String
     equipment: String!
-    memo: String
     createdAt: String
   ): Boolean!
 }

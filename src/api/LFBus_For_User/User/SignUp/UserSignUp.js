@@ -5,7 +5,7 @@ import sha256 from "sha256";
 export default {
   Mutation: {
     UserSignUp: async (_, args) => {
-      const { userId, password, needHelp, equipment, memo } = args;
+      const { userId, password, needHelp, equipment, sex } = args;
 
       const authSecret = generatorSecret();
       const existsUserId = await prisma.$exists.user({ userId });
@@ -20,9 +20,9 @@ export default {
           userId,
           password: securePassword,
           authSecret,
+          sex,
           needHelp,
           equipment,
-          memo,
         });
 
         return true;
