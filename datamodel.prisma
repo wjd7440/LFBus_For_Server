@@ -50,32 +50,3 @@ type Reservation{
   createdAt: DateTime @createdAt
 }
 
-type BusRoute{
-  ALLO_INTERVAL: Int
-  ALLO_INTERVAL_SAT: Int
-  ALLO_INTERVAL_SUN: Int
-  BUSSTOP_CNT: Int
-  END_NODE_ID: Int
-  END_STOP_ID: Int
-  ORIGIN_END: Int
-  ORIGIN_END_SAT: Int
-  ORIGIN_END_SUN: Int
-  ORIGIN_START: Int
-  ORIGIN_START_SAT: Int
-  ORIGIN_START_SUN: Int
-  ROUTE_CD: ID! @id
-  ROUTE_NO: Int
-  ROUTE_TP: Int
-  RUN_DIST_HALF: Float
-  RUN_TM: Int
-  START_NODE_ID: Int
-  START_STOP_ID: Int
-  TURN_END: Int
-  TURN_END_SAT: Int
-  TURN_END_SUN: Int
-  TURN_NODE_ID: Int
-  TURN_START: Int
-  TURN_START_SAT: Int
-  TURN_START_SUN: Int
-  TURN_STOP_ID: Int
-}
