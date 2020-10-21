@@ -4,7 +4,7 @@ export default {
   Query: {
     UserBusRouteDetail: async (_, args) => {
       const { ROUTE_CD } = args;
-      return await prisma.busRouteDetail({
+      return await prisma.busRoute({
         ROUTE_CD,
       });
     },
