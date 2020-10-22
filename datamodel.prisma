@@ -79,3 +79,19 @@ type BusRoute{
   TURN_START_SUN: Int
   TURN_STOP_ID: Int
 }
+
+type BusRotation{
+  id: ID! @id
+  BUSSTOP_ENG_NM: String
+  BUSSTOP_NM: String 
+  BUSSTOP_SEQ: Int
+  BUSSTOP_TP: Int
+  BUS_NODE_ID: Int
+  BUS_STOP_ID: Int
+  GPS_LATI: Float
+  GPS_LONG: Float
+  ROAD_NM: String
+  ROAD_NM_ADDR: String
+  ROUTE_CD: Int
+  TOTAL_DIST: Int
+}
