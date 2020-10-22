@@ -1,0 +1,3 @@
+type Query {
+  UserBusTurnStationDetail(TURN_NODE_ID: Int!): BusStation!
+}
