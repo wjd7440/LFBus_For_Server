@@ -1,0 +1,3 @@
+type Query {
+  UserBusStartStationDetail(START_NODE_ID: String!): BusStation!
+}
