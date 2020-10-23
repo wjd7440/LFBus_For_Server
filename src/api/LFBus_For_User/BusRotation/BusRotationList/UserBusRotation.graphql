@@ -5,7 +5,7 @@ type BusRotations {
 
 type Query {
   UserBusRotationList(
-    ROUTE_CD: Int
+    ROUTE_CD: String
     keyword: String
     orderBy: String
     skip: Int
