@@ -1,4 +1,4 @@
-type Maileage {
+type Maileages {
   maileages: [BusRoute!]!
   count: Int
 }
