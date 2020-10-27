@@ -14,7 +14,7 @@ type Maileage {
   id: ID! @id
   userId: String!
   account: Int!
-  createdAt: String
+  createdAt: DateTime @createdAt
 }
 
 type BusStation {
