@@ -1,0 +1,17 @@
+type Maileage {
+  maileages: [BusRoute!]!
+  count: Int
+}
+
+type Query {
+  UserMailegeList(
+    userId: String!
+    keyword: String
+    orderBy: String
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): Maileages!
+}
