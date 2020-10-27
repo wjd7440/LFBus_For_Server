@@ -10,6 +10,13 @@ type User {
   createdAt: DateTime @createdAt
 }
 
+type Maileage {
+  id: ID! @id
+  userId: String!
+  account: Int!
+  createdAt: String
+}
+
 type BusStation {
   BUS_NODE_ID: ID! @id
   BUS_STOP_ID: Int!
