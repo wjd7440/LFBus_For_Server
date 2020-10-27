@@ -6,7 +6,7 @@ type User {
   password: String!
   needHelp: String
   equipment: String!
-  maileage: Int
+  maileage: Int @default(value: 0)
   deviceToken: String
   createdAt: DateTime @createdAt
 }
