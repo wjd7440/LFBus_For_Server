@@ -11,8 +11,9 @@ export default {
         userId,
         maileage
       } = args;
-      const user = await prisma.user({ where: { id: account.id } });
-      console.log(user);
+      const user = await prisma.user({ id: account.id });
+      console.log(user)
+
       try {
         await prisma.createMaileage({
           userId: userId,
