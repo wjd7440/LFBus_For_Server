@@ -8,21 +8,19 @@ export default {
 
       const { account } = request;
       const {
-        userId,
         maileage
       } = args;
       const user = await prisma.user({ id: account.id });
-      console.log(user)
 
       try {
         await prisma.createMaileage({
-          userId: userId,
+          userId: user.id,
           account: maileage
         });
 
         await prisma.updateUser({
           data: { maileage: user.maileage + maileage },
-          where: { id: account.id },
+          where: { id: user.id },
         });
 
         return true;
