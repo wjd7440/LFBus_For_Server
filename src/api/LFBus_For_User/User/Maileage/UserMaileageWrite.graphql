@@ -1,6 +1,6 @@
 type Mutation {
   UserMaileageWrite(
-    userId:String!
+    userId: String!
     account: Int!
   ): Boolean!
 }

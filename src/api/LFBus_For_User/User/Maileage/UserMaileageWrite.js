@@ -5,10 +5,10 @@ export default {
   Mutation: {
     UserMaileageWrite: async (_, args, { request, isUserAuthenticated }) => {
       isUserAuthenticated(request);
-      console.log(reauest)
+      console.log(request)
       const {
-        account,
-        userId
+        userId,
+        account
       } = args;
       console.log(args);
       try {
