@@ -10,6 +10,7 @@ export default {
         account
       } = args;
       console.log(args);
+      console.log(user);
       try {
         await prisma.createMaileage({
           userId: { connect: { id: user.id } },
