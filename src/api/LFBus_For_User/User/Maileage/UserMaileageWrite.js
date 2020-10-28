@@ -7,12 +7,12 @@ export default {
       isUserAuthenticated(request);
 
       const { account } = request;
-      console.log(account)
       const {
         userId,
         maileage
       } = args;
-      console.log(args);
+      const user = await prisma.user({ where: { id: account.id } })
+      console.log(user);
       try {
         await prisma.createMaileage({
           userId: userId,
@@ -20,8 +20,8 @@ export default {
         });
 
         await prisma.updateUser({
-          data: { maileage: account.maileage + maileage },
-          where: { id: account },
+          data: { maileage: user.maileage + maileage },
+          where: { id: account.id },
         });
 
         return true;
