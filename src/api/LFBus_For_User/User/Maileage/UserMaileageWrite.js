@@ -5,21 +5,21 @@ export default {
   Mutation: {
     UserMaileageWrite: async (_, args, { request, isUserAuthenticated }) => {
       isUserAuthenticated(request);
-      const { user } = request;
+      console.log(reauest)
       const {
-        account
+        account,
+        userId
       } = args;
       console.log(args);
-      console.log(user);
       try {
         await prisma.createMaileage({
-          userId: { connect: { id: user.id } },
+          userId: userId,
           account: account
         });
 
         await prisma.updateUser({
           data: { maileage: user.maileage + account },
-          where: { id: user.id },
+          where: { id: userId },
         });
 
         return true;
