@@ -8,7 +8,7 @@ export default {
 
       const { account } = request;
       const user = await prisma.user({ id: account.id });
-
+      console.log(user)
       let where = {
         userId: user.id,
       };
