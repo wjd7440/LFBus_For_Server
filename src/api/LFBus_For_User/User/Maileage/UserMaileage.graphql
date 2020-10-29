@@ -5,7 +5,6 @@ type Maileages {
 
 type Query {
   UserMailegeList(
-    userId: String!
     keyword: String
     orderBy: String
     skip: Int
