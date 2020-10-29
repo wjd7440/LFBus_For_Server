@@ -3,14 +3,12 @@ import { prisma } from "../../../../../generated/prisma-client";
 export default {
   Query: {
     UserMaileageList: async (_, args, { request, isUserAuthenticated }) => {
-      const { orderBy, skip, after, before, first, last } = args;
       isUserAuthenticated(request);
-
+      const { orderBy, skip, after, before, first, last } = args;
       const { account } = request;
-      const user = await prisma.user({ id: account.id });
-      console.log(user)
+
       let where = {
-        userId: user.id,
+        userId: account.id,
       };
 
       const maileages = await prisma.maileages({
