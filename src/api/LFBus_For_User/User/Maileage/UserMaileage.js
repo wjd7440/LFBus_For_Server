@@ -2,7 +2,7 @@ import { prisma } from "../../../../../generated/prisma-client";
 
 export default {
   Query: {
-    UserMailegeList: async (_, args, { request, isUserAuthenticated }) => {
+    UserMaileageList: async (_, args, { request, isUserAuthenticated }) => {
       const { orderBy, skip, after, before, first, last } = args;
       isUserAuthenticated(request);
 

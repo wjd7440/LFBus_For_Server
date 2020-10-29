@@ -4,7 +4,7 @@ type Maileages {
 }
 
 type Query {
-  UserMailegeList(
+  UserMaileageList(
     keyword: String
     orderBy: String
     skip: Int
