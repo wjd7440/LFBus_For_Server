@@ -4,9 +4,5 @@ type BusStations {
 }
 
 type Query {
-  UserBusStationSearchList(
-    latitude: String!
-    longitude: String!
-    orderBy: String
-  ): BusStations!
+  UserBusStationSearchList: BusStations!
 }

@@ -1,34 +1,22 @@
 import { prisma } from "../../../../../generated/prisma-client";
-import mysql from "mysql2/promise";
-import { dbConfig } from "../../../../../config/db.config";
-const pool = mysql.createPool(dbConfig);
 
 export default {
   Query: {
     UserBusStationSearchList: async (_, args) => {
-      const { latitude, longitude, orderBy } = args;
+      // const { keyword, orderBy, skip, after, before, first, last } = args;
 
-      let busStations = [];
-      const connection = await pool.getConnection(async (conn) => conn);
-      const [results] = await connection.query(
-        `SELECT BUS_STOP_ID ,BUS_NODE_ID, BUSSTOP_NM, GPS_LATI, GPS_LONG, distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) AS DISTANCE FROM BusStation WHERE distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) <= 200 ORDER BY DISTANCE ASC `
-      );
-      connection.release();
+      // let where = null;
 
-      results.map((obejct, index) => {
-        const busStation = {
-          BUS_STOP_ID: obejct.BUS_STOP_ID,
-          BUS_NODE_ID: obejct.BUS_NODE_ID,
-          BUSSTOP_NM: obejct.BUSSTOP_NM,
-          DISTANCE: obejct.DISTANCE,
-          GPS_LATI: obejct.GPS_LATI,
-          GPS_LONG: obejct.GPS_LONG,
-          orderBy: orderBy,
-        };
-        busStations.push(busStation);
-      });
+      //   if (keyword) {
+      //     where = { ...where, question_contains: keyword };
+      //   }
 
-      const count = busStations.length;
+      const busStations = await prisma.busStations();
+
+      const count = await prisma
+        .busStationsConnection()
+        .aggregate()
+        .count();
 
       return { busStations, count };
     },
