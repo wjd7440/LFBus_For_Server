@@ -1,0 +1,8 @@
+type BusStations {
+  busStations: [BusStation!]!
+  count: Int
+}
+
+type Query {
+  UserBusStationSearchList: BusStations!
+}
