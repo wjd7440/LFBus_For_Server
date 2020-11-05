@@ -56,7 +56,7 @@ type Reservation{
   arrivalStation: String!
   equipment: String
   equipmentName: String
-  pay: String
+  pay: Boolean
   memo: String
   createdAt: DateTime @createdAt
 }
