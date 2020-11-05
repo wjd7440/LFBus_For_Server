@@ -5,6 +5,7 @@ type Mutation {
     sex: String!
     needHelp: String
     equipment: String!
+    equipmentName: String!
     createdAt: String
   ): Boolean!
 }
