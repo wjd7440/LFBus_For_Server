@@ -28,7 +28,6 @@ export default {
           departureStation,
           arrivalStation,
           equipment,
-          equipmentName,
           memo,
         });
 
