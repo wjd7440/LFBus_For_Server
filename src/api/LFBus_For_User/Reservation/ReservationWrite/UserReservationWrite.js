@@ -13,6 +13,7 @@ export default {
         departureStation,
         arrivalStation,
         equipment,
+        equipmentName,
         memo,
         deviceToken,
       } = args;
@@ -27,6 +28,7 @@ export default {
           departureStation,
           arrivalStation,
           equipment,
+          equipmentName,
           memo,
         });
 
