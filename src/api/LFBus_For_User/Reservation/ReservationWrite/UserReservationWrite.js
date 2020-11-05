@@ -41,6 +41,7 @@ export default {
             notification: {
               title: "승차예약",
               body: `승차예약이 있습니다.`,
+              sound: 'email-sound.wav'
             },
           });
           console.log("가라푸시");
