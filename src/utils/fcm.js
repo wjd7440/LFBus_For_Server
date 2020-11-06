@@ -1,7 +1,6 @@
 export const expoPush = async ({ deviceToken, data, notification }) => {
   const message = {
     to: deviceToken,
-    sound: "default",
     ...notification,
     data: data,
   };
