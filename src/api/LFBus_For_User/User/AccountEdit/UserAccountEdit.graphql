@@ -1,0 +1,7 @@
+type Mutation {
+  UserAccountEdit(
+    needHelp: String
+    equipment: String!
+    equipmentName: String!
+  ): Boolean!
+}
