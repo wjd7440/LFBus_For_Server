@@ -4,6 +4,7 @@ export const expoPush = async ({ deviceToken, data, notification }) => {
     sound: "default",
     ...notification,
     data: data,
+    channelId: "chat-messages",
   };
 
   await fetch("https://exp.host/--/api/v2/push/send", {
