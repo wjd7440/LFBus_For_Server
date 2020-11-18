@@ -19,7 +19,7 @@ export default {
         first, //limit
         last,
       });
-
+      console.log("예약")          
       console.log(reservations)          
       const count = await prisma
         .reservationsConnection({
