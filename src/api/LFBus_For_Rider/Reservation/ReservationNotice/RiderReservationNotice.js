@@ -7,7 +7,7 @@ export default {
 
       let where = {
         CAR_REG_NO: CAR_REG_NO,
-        notice: true,
+        notice: false,
       };
 
       const reservations = await prisma.reservations({

@@ -32,6 +32,7 @@ export default {
           equipmentName,
           pay,
           memo,
+          notice: false
         });
 
         if (deviceToken) {
