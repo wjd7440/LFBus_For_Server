@@ -26,14 +26,14 @@ export default {
         })
         .aggregate()
         .count();        
-
+console.log("1 : " + count)
         if(count > 0) {
           await prisma.updateReservation({
             data: { notice: true },
             where: { id: reservations[0].id }
           });
         }  
-
+console.log("2 : " + count)
       return { reservations, count };
     },
   },
