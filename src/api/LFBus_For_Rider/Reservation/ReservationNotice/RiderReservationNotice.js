@@ -26,16 +26,11 @@ export default {
         })
         .aggregate()
         .count();        
-
-// console.log(reservations, count);
-
-      reservations.map((rowData, index) => {
-        console.log(rowData);
-        prisma.updateReservation({
+      
+        await prisma.updateReservation({
           data: { notice: true },
-          where: { id: rowData.id }
+          where: { id: reservations[0].id }
         });
-      })        
 
       return { reservations, count };
     },
