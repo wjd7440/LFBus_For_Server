@@ -27,10 +27,12 @@ export default {
         .aggregate()
         .count();        
       
-        await prisma.updateReservation({
-          data: { notice: true },
-          where: { id: reservations[0].id }
-        });
+        if(count > 0) {
+          await prisma.updateReservation({
+            data: { notice: true },
+            where: { id: reservations[0].id }
+          });
+        }
 
       return { reservations, count };
     },
