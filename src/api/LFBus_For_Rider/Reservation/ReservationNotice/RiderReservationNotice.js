@@ -31,7 +31,7 @@ export default {
 
       reservations.map((rowData, index) => {
         console.log(rowData);
-        await prisma.updateReservation({
+        prisma.updateReservation({
           data: { notice: true },
           where: { id: rowData.id }
         });
