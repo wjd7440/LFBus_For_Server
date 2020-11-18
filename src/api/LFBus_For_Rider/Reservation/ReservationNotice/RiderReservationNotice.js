@@ -20,6 +20,7 @@ export default {
         last,
       });
 
+      console.log(reservations)          
       const count = await prisma
         .reservationsConnection({
           where,
@@ -27,7 +28,6 @@ export default {
         .aggregate()
         .count();        
         console.log("1 : " + count)
-        console.log(reservations)          
         if(!count) {
           await prisma.updateReservation({
             data: { notice: true },
