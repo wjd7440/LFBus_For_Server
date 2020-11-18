@@ -25,7 +25,9 @@ export default {
           where,
         })
         .aggregate()
-        .count();
+        .count();        
+
+console.log(reservations, count);
 
       return { reservations, count };
     },
