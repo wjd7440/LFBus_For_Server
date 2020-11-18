@@ -27,7 +27,7 @@ export default {
         .aggregate()
         .count();        
         console.log("1 : " + count)          
-        if(count > 0) {
+        if(!count) {
           await prisma.updateReservation({
             data: { notice: true },
             where: { id: reservations[0].id }
