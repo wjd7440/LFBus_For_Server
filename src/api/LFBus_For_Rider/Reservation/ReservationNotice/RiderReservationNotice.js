@@ -2,7 +2,7 @@ import { prisma } from "../../../../../generated/prisma-client";
 
 export default {
   Query: {
-    RiderReservationList: async (_, args, { request, isUserAuthenticated }) => {
+    RiderReservationNotice: async (_, args, { request, isUserAuthenticated }) => {
       const { orderBy, skip, after, before, first, last, CAR_REG_NO } = args;
 
       let where = {

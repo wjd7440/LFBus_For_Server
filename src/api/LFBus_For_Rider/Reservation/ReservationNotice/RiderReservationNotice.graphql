@@ -4,7 +4,7 @@ type Reservations {
 }
 
 type Query {
-  RiderReservationList(
+  RiderReservationNotice(
     CAR_REG_NO: String!
     keyword: String
     orderBy: String
