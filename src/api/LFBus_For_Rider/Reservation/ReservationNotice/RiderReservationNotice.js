@@ -21,7 +21,7 @@ export default {
       });      
 
       console.log("예약")          
-      console.log(reservations)    
+      console.log(reservations[0].id)    
       const count = await prisma
         .reservationsConnection({
           where,
