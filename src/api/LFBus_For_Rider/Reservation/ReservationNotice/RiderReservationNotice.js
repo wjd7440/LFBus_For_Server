@@ -26,7 +26,8 @@ export default {
         })
         .aggregate()
         .count();        
-        console.log("1 : " + count)          
+        console.log("1 : " + count)
+        console.log(reservations)          
         if(!count) {
           await prisma.updateReservation({
             data: { notice: true },
