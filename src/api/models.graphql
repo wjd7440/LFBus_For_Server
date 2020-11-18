@@ -58,6 +58,7 @@ type Reservation {
   equipment: String
   equipmentName: String
   pay: Boolean
+  notice: Boolean
   memo: String
   createdAt: String
 }

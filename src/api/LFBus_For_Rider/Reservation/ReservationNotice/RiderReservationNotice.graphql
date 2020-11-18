@@ -1,0 +1,17 @@
+type Reservations {
+  reservations: [Reservation!]!
+  count: Int
+}
+
+type Query {
+  RiderReservationList(
+    CAR_REG_NO: String!
+    keyword: String
+    orderBy: String
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): Reservations!
+}
