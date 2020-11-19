@@ -33,6 +33,8 @@ export default {
             where: { notice: false }
           });
         }  
+
+        console.log(reservations, count);
         
       return { reservations, count };
     },
