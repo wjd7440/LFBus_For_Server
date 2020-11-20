@@ -3,6 +3,7 @@ type User {
   userId: String! @unique
   sex: String!
   age: String! 
+  gu: String!
   authSecret: String
   password: String!
   needHelp: String
