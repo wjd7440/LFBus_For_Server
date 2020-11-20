@@ -2,8 +2,7 @@ type User {
   id: ID!
   userId: String!
   sex: String!
-  ageCode: Int!
-  ageName: String! 
+  age: String! 
   authSecret: String!
   password: String!
   needHelp: String
