@@ -11,7 +11,7 @@ export default {
       if (!exists) {
         throw Error("가입된 아이디가 아닙니다.");
       }
-
+console.log(userId ,password)
       const user = await prisma.user({ userId });
       const securePassword = sha256(password + user.authSecret);
 
