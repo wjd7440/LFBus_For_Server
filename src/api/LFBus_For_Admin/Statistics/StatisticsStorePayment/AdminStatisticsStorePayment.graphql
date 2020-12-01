@@ -1,0 +1,17 @@
+type StorePayment {
+  date: String
+  count: Int
+  total: Int
+}
+
+type StorePaymentList {
+  list: [StorePayment!]!
+}
+
+type Query {
+  AdminStatisticsStorePayment(
+    id: String!
+    startDate: String!
+    endDate: String!
+  ): StorePaymentList!
+}

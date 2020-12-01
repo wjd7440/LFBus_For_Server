@@ -1,0 +1,13 @@
+type Payment {
+  date: String
+  count: Int
+  total: Int
+}
+
+type PaymentList {
+  list: [Payment!]!
+}
+
+type Query {
+  AdminStatisticsPayment(startDate: String!, endDate: String!): PaymentList!
+}

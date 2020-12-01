@@ -1,0 +1,13 @@
+type DNTIssue {
+  date: String
+  count: Int
+  total: Int
+}
+
+type DNTIssueList {
+  list: [DNTIssue!]!
+}
+
+type Query {
+  AdminStatisticsDNTIssue(startDate: String!, endDate: String!): DNTIssueList!
+}
