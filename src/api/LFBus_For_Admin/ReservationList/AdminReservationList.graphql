@@ -1,0 +1,16 @@
+type Reservations {
+  reservations: [Reservation!]!
+  count: Int
+}
+
+type Query {
+  UserReservationList(
+    keyword: String
+    orderBy: String
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): Reservations!
+}
