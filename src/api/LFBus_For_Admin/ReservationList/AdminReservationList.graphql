@@ -4,7 +4,7 @@ type Reservations {
 }
 
 type Query {
-  UserReservationList(
+  AdminReservationList(
     keyword: String
     orderBy: String
     skip: Int
