@@ -6,8 +6,7 @@ export default {
       isUserAuthenticated(request);
       const { orderBy, skip, after, before, first, last } = args;
 
-      const reservations = await prisma.reservations({
-        where,
+      const reservations = await prisma.reservations({        
         orderBy,
         skip, //offset
         after,
@@ -17,9 +16,7 @@ export default {
       });
 
       const count = await prisma
-        .reservationsConnection({
-          where,
-        })
+        .reservationsConnection()
         .aggregate()
         .count();
 
