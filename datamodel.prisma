@@ -61,10 +61,10 @@ type Reservation{
   equipmentName: String
   pay: Boolean
   notice: Boolean
-  sex: String!
-  age: String! 
-  gu: String!
-  dong: String!
+  sex: String
+  age: String 
+  gu: String
+  dong: String
   memo: String
   createdAt: DateTime @createdAt
 }
