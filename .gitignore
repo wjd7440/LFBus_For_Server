@@ -1,3 +1,6 @@
+# key
+aws_lfbus_server.pem
+
 # Logs
 logs
 *.log
