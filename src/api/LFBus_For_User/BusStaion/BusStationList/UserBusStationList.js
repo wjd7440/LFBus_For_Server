@@ -7,7 +7,7 @@ export default {
   Query: {
     UserBusStationList: async (_, args) => {
       const { latitude, longitude, orderBy } = args;
-
+      console.log(latitude, longitude);
       let busStations = [];
       const connection = await pool.getConnection(async (conn) => conn);
       const [results] = await connection.query(
