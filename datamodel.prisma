@@ -100,7 +100,7 @@ type BusRoute{
 }
 
 type BusRotation{
-  ide: ID! @id
+  id: ID! @id
   BUSSTOP_ENG_NM: String
   BUSSTOP_NM: String 
   BUSSTOP_SEQ: Int
