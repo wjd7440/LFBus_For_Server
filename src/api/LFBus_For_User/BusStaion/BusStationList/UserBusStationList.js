@@ -11,7 +11,8 @@ export default {
       let busStations = [];
       const connection = await pool.getConnection(async (conn) => conn);
       const [results] = await connection.query(
-        `SELECT BUS_STOP_ID ,BUS_NODE_ID, BUSSTOP_NM, GPS_LATI, GPS_LONG, distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) AS DISTANCE FROM BusStation WHERE distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) <= 0.5 ORDER BY DISTANCE ASC `
+        // `SELECT BUS_STOP_ID ,BUS_NODE_ID, BUSSTOP_NM, GPS_LATI, GPS_LONG, distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) AS DISTANCE FROM BusStation WHERE distance_between(GPS_LATI, GPS_LONG, ${latitude}, ${longitude}) <= 0.5 ORDER BY DISTANCE ASC `
+        `SELECT BUS_STOP_ID ,BUS_NODE_ID, BUSSTOP_NM, GPS_LATI, GPS_LONG,(6371*acos(cos(radians(${latitude}))*cos(radians(GPS_LATI))*cos(radians(GPS_LONG) -radians(${longitude}))+sin(radians(${latitude}))*sin(radians(GPS_LATI)))) AS DISTANCE FROM BusStation Having DISTANCE <= 0.5 order by DISTANCE`
       );
       connection.release();
 
